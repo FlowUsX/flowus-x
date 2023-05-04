@@ -1,31 +1,26 @@
 {
-  "include": [
-    "src",
-    "types",
-    "__tests__"
-  ],
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "lib": [
-      "esnext"
-    ],
-    "importHelpers": true,
-    "declaration": true,
+    "incremental": true,
+    "target": "ES2015",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
-    "rootDir": "./",
-    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "*": [
-        "src/*",
-        "node_modules/*"
-      ]
-    },
-    "esModuleInterop": true,
-    "resolveJsonModule": true
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "traceResolution": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "pretty": true,
+    "lib": ["ESNext", "ESNext.Array", "DOM"],
+    "baseUrl": "."
   }
 }
