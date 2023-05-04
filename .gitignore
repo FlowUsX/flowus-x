@@ -10,3 +10,4 @@ packages/**/package-lock.json
 /test/**
 link.sh
 .npmrc
+pnpm-lock.yaml
