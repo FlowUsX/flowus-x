@@ -3,7 +3,7 @@
     "composite": true
   },
   "files": [],
-  "include": [],
+  "include": ["src"],
   "references": [
     {
       "path": "./packages/flowus-client/tsconfig.json"

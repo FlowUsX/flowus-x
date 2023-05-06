@@ -1,0 +1,17 @@
+{
+  "name": "@flowusx/flowus-client",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.mjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "urllib": "^3.13.2"
+  }
+}

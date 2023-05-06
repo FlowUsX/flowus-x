@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.root",
   "compilerOptions": {
-    "composite": true,
+//    "composite": true,
     "rootDir": "src",
     "outDir": "build",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
     "emitDeclarationOnly": true
   },
   "include": ["src"]
