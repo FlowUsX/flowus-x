@@ -18,7 +18,11 @@ export interface BlockData {
   }[]
   cover: string
   coverPos: number
-  format: { [key: string]: any }
+  format: {
+    tableBlockColumnOrder: string[]
+    tableBlockRowHeader: boolean
+    [key: string]: any
+  }
   icon: {
     type: string
     value: string

@@ -2,8 +2,8 @@
   "name": "@flowusx/flowus-client",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/index.mjs",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup"
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "urllib": "^3.13.2"
+    "urllib": "^3.13.2",
+    "@flowusx/flowus-types": "workspace:*"
   }
 }

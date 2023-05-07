@@ -1,9 +1,8 @@
 {
   "extends": "../../tsconfig.root",
   "compilerOptions": {
-    //    "composite": true,
-    "rootDir": "src",
-    "outDir": "build",
+    "rootDir": ".",
+    "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo",
     "emitDeclarationOnly": true,
     "esModuleInterop": true

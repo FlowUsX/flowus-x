@@ -2,16 +2,21 @@
   "name": "@flowusx/flowus-to-md",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "ts-node-esm ./src/utils/test.ts"
+    "build": "tsup"
   },
   "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/markdown-table": "^2.0.0",
-    "markdown-table": "^2.0.0"
+    "markdown-table": "^2.0.0",
+    "@flowusx/flowus-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/markdown-table": "^2.0.0"
   }
 }
