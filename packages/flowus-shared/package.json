@@ -1,0 +1,26 @@
+{
+  "name": "@flowusx/flowus-shared",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "urllib": "^3.13.2",
+    "chalk": "^4.1.2",
+    "debug": "^4.3.4",
+    "lodash": "^4.17.21",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/lodash": "^4.14.189",
+    "@types/shelljs": "^0.8.11"
+  }
+}
