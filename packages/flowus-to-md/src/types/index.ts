@@ -11,6 +11,6 @@ export interface ConfigOptions {
 }
 
 export interface FlowUsToMarkdownOptions {
-  client: FlowUsClient
+  client?: FlowUsClient
   config?: ConfigOptions
 }

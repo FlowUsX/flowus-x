@@ -1,30 +1,68 @@
-import { BlockType } from '../const/flowus'
+import { BlockType, BlockTypeText } from '../const/flowus'
 import { Block, Blocks } from '@flowusx/flowus-types'
 
 import {
   addTabSpace,
+  bold,
   bullet,
   codeBlock,
   divider,
   equation,
   heading,
   image,
+  inlineCode,
+  inlineEquation,
+  italic,
   link,
   quote,
+  strikethrough,
   table,
   todo,
   toggle,
+  underline,
 } from './md'
 import { Transform } from '../types'
+import { out } from '@flowusx/flowus-shared'
+
+export const _unsupported = (type: BlockType) => {
+  return () => {
+    out.warning(`暂不支持的块类型: ${BlockTypeText[type]}`)
+    // TODO DEBUG 输出block信息
+    return ''
+  }
+}
 
 export const getTextValue = (block: Block) => {
-  // return block.data.segments.map(segment => segment.text).join('')
-  return block.title
+  let str = ''
+  block.data.segments?.forEach((item) => {
+    if (item.enhancer.bold) {
+      // 加粗
+      str += bold(item.text)
+    } else if (item.enhancer.underline) {
+      // 下划线
+      str += underline(item.text)
+    } else if (item.enhancer.italic) {
+      // 斜体
+      str += italic(item.text)
+    } else if (item.enhancer.lineThrough) {
+      // 删除线
+      str += strikethrough(item.text)
+    } else if (item.enhancer.code) {
+      // 行内代码
+      str += inlineCode(item.text)
+    } else if (item.type === 8) {
+      // 行内公式
+      str += inlineEquation(item.text)
+    } else {
+      str += item.text
+    }
+  })
+  return str
 }
 
 export const getTodoValue = (block: Block) => {
   // return block.data.segments.map(segment => segment.text).join('')
-  return todo(block.title, !!block.data.checked)
+  return todo(block.title, block.data.checked)
 }
 
 export const getUnorderedListValue = (block: Block, blocks: Blocks) => {
@@ -38,7 +76,7 @@ export const getUnorderedListValue = (block: Block, blocks: Blocks) => {
   return bullet(block.title) + childrenStr
 }
 
-export const getNumberedListValue = (block: Block, blocks: Blocks) => {
+export const getNumberedListValue = (block: Block, blocks: Blocks, count = 1) => {
   // return block.data.segments.map(segment => segment.text).join('')
   let childrenStr = '\n'
   const childrenIds = block.subNodes
@@ -46,7 +84,7 @@ export const getNumberedListValue = (block: Block, blocks: Blocks) => {
     const childBlock = blocks[id]
     childrenStr += addTabSpace(transform[childBlock.type as BlockType](childBlock, blocks), 1)
   })
-  return bullet(block.title, 1) + childrenStr
+  return bullet(block.title, count) + childrenStr
 }
 
 export const getToggleValue = (block: Block, blocks: Blocks) => {
@@ -82,17 +120,15 @@ export const getEmphasisTextValue = (block: Block) => {
 
 export const getMediaValue = (block: Block) => {
   if (block.data.display === 'image') {
-    return image(block.title, block.data.fullLink)
+    return image(block.title, block.data.fullLink || block.data.ossName)
   } else if (block.data.display === 'video') {
-    return link(block.title, block.data.fullLink)
+    return link(block.title, block.data.fullLink || block.data.ossName)
   }
   return ''
 }
 
-export const nonsupport = () => ''
-
 export const getLinkValue = (block: Block) => {
-  return link(block.title, block.data.link)
+  return link(block.title || block.data.link, block.data.link)
 }
 
 export const getEquationValue = (block: Block) => {
@@ -113,23 +149,25 @@ export const getTableValue = (block: Block, blocks: Blocks) => {
     // 行数组
     const cellString: string[] = []
     const columnObj = blocks[subNode].data.collectionProperties!
-    Object.keys(columnObj).forEach((columnkey) => {
-      columns.forEach((column) => {
-        if (columnkey === column) {
-          const cell = columnObj[columnkey][0].text!
-          cellString.push(cell)
-        }
+    if (columnObj) {
+      Object.keys(columnObj).forEach((columnkey) => {
+        columns.forEach((column) => {
+          if (columnkey === column) {
+            const cell = columnObj[columnkey][0].text!
+            cellString.push(cell)
+          }
+        })
       })
-    })
-    // 生成二维行数组
-    cells.push(cellString)
+      // 生成二维行数组
+      cells.push(cellString)
+    }
   })
   // 转Table
-  return table(cells)
+  return '\n' + table(cells) + '\n'
 }
 
 export const transform: Transform = {
-  [BlockType.Doc]: nonsupport,
+  [BlockType.Doc]: _unsupported(BlockType.Doc),
   [BlockType.Text]: getTextValue,
   [BlockType.Todo]: getTodoValue,
   [BlockType.Unordered_List]: getUnorderedListValue,
@@ -140,13 +178,19 @@ export const transform: Transform = {
   [BlockType.Quote]: getQuoteValue,
   [BlockType.Emphasis_Text]: getEmphasisTextValue,
   [BlockType.Media]: getMediaValue,
-  [BlockType.Data_Table]: nonsupport,
-  [BlockType.Data_Table_Inline]: nonsupport,
+  [BlockType.Embed_Folder]: _unsupported(BlockType.Embed_Folder),
+  [BlockType.Reference_Page]: _unsupported(BlockType.Reference_Page),
+  [BlockType.Data_Table]: _unsupported(BlockType.Data_Table),
+  [BlockType.Data_Table_Inline]: _unsupported(BlockType.Data_Table_Inline),
+  [BlockType.Embed_Webpage]: getLinkValue,
   [BlockType.Web_Bookmark]: getLinkValue,
   [BlockType.Equation]: getEquationValue,
   [BlockType.Code]: getCodeValue,
+  [BlockType.Embed_Media]: getLinkValue,
   [BlockType.Table]: getTableValue,
-  [BlockType.Table_Row]: nonsupport,
-  [BlockType.Mind_Map]: nonsupport,
+  [BlockType.Table_Row]: _unsupported(BlockType.Table_Row),
+  [BlockType.Reference_Data_Table]: _unsupported(BlockType.Reference_Data_Table),
+  [BlockType.Mind_Map]: _unsupported(BlockType.Mind_Map),
+  [BlockType.Mind_Map_Page]: _unsupported(BlockType.Mind_Map_Page),
   [BlockType.Toggle_Title]: getToggleValue,
 }

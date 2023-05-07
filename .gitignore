@@ -11,3 +11,4 @@ packages/**/package-lock.json
 link.sh
 .npmrc
 pnpm-lock.yaml
+.run

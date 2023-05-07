@@ -29,12 +29,19 @@ export interface BlockData {
   }
   pageFixedWidth: boolean
   segments: {
-    enhancer?: { [key: string]: any }
-    text?: string
-    type?: number
+    enhancer: {
+      italic: boolean
+      bold: boolean
+      lineThrough: boolean
+      underline: boolean
+      code: boolean
+      [key: string]: any
+    }
+    text: string
+    type: number
   }[]
-  level?: number
-  checked?: boolean
+  level: number
+  checked: boolean
   ossName: string
   fullLink: string
   display: string
