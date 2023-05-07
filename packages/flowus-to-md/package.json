@@ -14,7 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "markdown-table": "^2.0.0",
-    "@flowusx/flowus-types": "workspace:*"
+    "@flowusx/flowus-types": "workspace:*",
+    "@flowusx/flowus-client": "workspace:*",
+    "@flowusx/flowus-shared": "workspace:*"
   },
   "devDependencies": {
     "@types/markdown-table": "^2.0.0"
