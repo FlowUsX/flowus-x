@@ -56,17 +56,15 @@ export class FlowUsClient {
       batch: mediaBlocks,
     }
     const medias = await this._fetch<MediaUrl[]>('file/create_urls', { data, method: 'POST' })
+    medias.map((item, index) => {
+      return {
+        ...item,
+        blockId: mediaBlocks[index].blockId,
+      }
+    })
     medias.forEach((media) => {
-      const ossId = media.url.split('/')[4]
-      Object.keys(blocks).forEach((blockId) => {
-        const block = blocks[blockId]
-        // 媒体类型
-        if (block.type === 14) {
-          if (blocks[blockId].data.ossName.includes(ossId)) {
-            blocks[blockId].data.fullLink = media.url
-          }
-        }
-      })
+      const blockId = media.blockId
+      blocks[blockId].data.fullLink = media.url
     })
     return blocks
   }

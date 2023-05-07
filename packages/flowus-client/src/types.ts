@@ -5,4 +5,5 @@ export interface FlowUsConfig {
 export interface MediaUrl {
   url: string
   ttl: number
+  blockId: string
 }
