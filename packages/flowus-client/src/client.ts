@@ -1,5 +1,5 @@
-import { request, RequestOptions } from 'urllib'
 import { Blocks, PageBlocks } from '@flowusx/flowus-types'
+import { out, request, RequestOptions } from '@flowusx/flowus-shared'
 import { FlowUsConfig, MediaUrl } from './types'
 
 export class FlowUsClient {
@@ -10,6 +10,10 @@ export class FlowUsClient {
     // this._authToken = authToken
   }
 
+  /**
+   * 获取页面所有Block
+   * @param pageId
+   */
   public async getPageBlocks(pageId: string) {
     const pageBlocks = await this._fetch<PageBlocks>(`docs/${pageId}`, { method: 'GET' })
     // 处理图片链接
@@ -19,24 +23,32 @@ export class FlowUsClient {
     return pageBlocks
   }
 
-  private async _fetch<T>(endpoint: string, reqOpts?: RequestOptions): Promise<T> {
-    const opts: RequestOptions = {
-      contentType: 'json',
-      dataType: 'json',
-      headers: {
-        'User-Agent': '@flowusx/flowus-client',
-        authority: 'flowus.cn',
-        app_version_name: '1.51.0',
-        ...reqOpts?.headers,
-      },
-      compressed: true,
-      // 超时时间 60s
-      timeout: 60000,
-      ...reqOpts,
+  /**
+   * 获取数据表格文档列表
+   * @param pageId
+   */
+  public async getDataTablePages(pageId: string) {
+    const pageBlocks = await this._fetch<PageBlocks>(`docs/${pageId}`, { method: 'GET' })
+    const blocksKeys = Object.keys(pageBlocks.blocks)
+    // 第一个节点标记了该Block的属性是文档还是其他
+    const firstKey = blocksKeys[0]
+    const firstValue = pageBlocks.blocks[firstKey]
+    if (firstValue.type === 18) {
+      // 数据表格
+      return firstValue.subNodes
+    } else if (firstValue.type === 0) {
+      // 错误类型，请使用getPageBlocks
+      out.err('类型错误', '请使用 getPageBlocks 获取页面数据')
+    } else {
+      // 错误类型，暂不支持
+      out.err('类型错误', '暂不支持的文档类型')
     }
+    return []
+  }
 
+  private async _fetch<T>(endpoint: string, reqOpts?: RequestOptions): Promise<T> {
     const url = `${this._baseUrl}/${endpoint}`
-    const res = await request(url, opts)
+    const res = await request<T>(url, reqOpts)
     return res.data.data
   }
 
