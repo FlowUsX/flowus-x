@@ -1,0 +1,17 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "ts-node-esm src/test-md.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@flowusx/flowus-client": "workspace:*",
+    "@flowusx/flowus-to-md": "workspace:*"
+  }
+}
