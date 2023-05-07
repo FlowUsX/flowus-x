@@ -55,8 +55,8 @@ export class FlowUsClient {
     const data = {
       batch: mediaBlocks,
     }
-    const medias = await this._fetch<MediaUrl[]>('file/create_urls', { data, method: 'POST' })
-    medias.map((item, index) => {
+    let medias = await this._fetch<MediaUrl[]>('file/create_urls', { data, method: 'POST' })
+    medias = medias.map((item, index) => {
       return {
         ...item,
         blockId: mediaBlocks[index].blockId,
