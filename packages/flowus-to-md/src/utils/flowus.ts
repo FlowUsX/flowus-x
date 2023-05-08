@@ -1,5 +1,4 @@
 import { BlockType, BlockTypeText } from '../const/flowus'
-import { Block, Blocks } from '@flowusx/flowus-types'
 
 import {
   addTabSpace,
@@ -21,18 +20,18 @@ import {
   toggle,
   underline,
 } from './md'
-import { Transform } from '../types'
+import { Transform, TransformPrams } from '../types'
 import { out } from '@flowusx/flowus-shared'
 
 export const _unsupported = (type: BlockType) => {
-  return () => {
-    out.warning(`暂不支持的块类型: ${BlockTypeText[type]}`)
+  return ({ pageTitle }: TransformPrams) => {
+    out.warning(`【${pageTitle}】存在暂不支持的块类型: ${BlockTypeText[type]}`)
     // TODO DEBUG 输出block信息
     return ''
   }
 }
 
-export const getTextValue = (block: Block) => {
+export const getTextValue = ({ block }: TransformPrams) => {
   let str = ''
   block.data.segments?.forEach((item) => {
     if (item.enhancer.bold) {
@@ -60,45 +59,47 @@ export const getTextValue = (block: Block) => {
   return str
 }
 
-export const getTodoValue = (block: Block) => {
-  // return block.data.segments.map(segment => segment.text).join('')
+export const getTodoValue = ({ block }: TransformPrams) => {
   return todo(block.title, block.data.checked)
 }
 
-export const getUnorderedListValue = (block: Block, blocks: Blocks) => {
-  // return block.data.segments.map(segment => segment.text).join('')
+export const getUnorderedListValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = '\n'
   const childrenIds = block.subNodes
   childrenIds.forEach((id) => {
     const childBlock = blocks[id]
-    childrenStr += addTabSpace(transform[childBlock.type as BlockType](childBlock, blocks), 1)
+    childrenStr += addTabSpace(
+      transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle }),
+      1,
+    )
   })
   return bullet(block.title) + childrenStr
 }
 
-export const getNumberedListValue = (block: Block, blocks: Blocks, count = 1) => {
-  // return block.data.segments.map(segment => segment.text).join('')
+export const getNumberedListValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = '\n'
   const childrenIds = block.subNodes
   childrenIds.forEach((id) => {
     const childBlock = blocks[id]
-    childrenStr += addTabSpace(transform[childBlock.type as BlockType](childBlock, blocks), 1)
+    childrenStr += addTabSpace(
+      transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle }),
+      1,
+    )
   })
-  return bullet(block.title, count) + childrenStr
+  return bullet(block.title, 1) + childrenStr
 }
 
-export const getToggleValue = (block: Block, blocks: Blocks) => {
+export const getToggleValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = ''
   const childrenIds = block.subNodes
   childrenIds.forEach((id) => {
     const childBlock = blocks[id]
-    childrenStr = transform[childBlock.type as BlockType](childBlock, blocks)
+    childrenStr = transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle })
   })
   return toggle(block.title, childrenStr)
 }
 
-export const getTitleValue = (block: Block) => {
-  // return block.data.segments.map(segment => segment.text).join('')
+export const getTitleValue = ({ block }: TransformPrams) => {
   return heading(block.title, block.data.level)
 }
 
@@ -106,11 +107,11 @@ export const getDividingValue = () => {
   return divider()
 }
 
-export const getQuoteValue = (block: Block) => {
+export const getQuoteValue = ({ block }: TransformPrams) => {
   return quote(block.title)
 }
 
-export const getEmphasisTextValue = (block: Block) => {
+export const getEmphasisTextValue = ({ block }: TransformPrams) => {
   let text = block.title
   if (block.data.icon.type === 'emoji') {
     text = block.data.icon.value + ' ' + text
@@ -118,7 +119,7 @@ export const getEmphasisTextValue = (block: Block) => {
   return quote(text)
 }
 
-export const getMediaValue = (block: Block) => {
+export const getMediaValue = ({ block }: TransformPrams) => {
   if (block.data.display === 'image') {
     return image(block.title, block.data.fullLink || block.data.ossName)
   } else if (block.data.display === 'video') {
@@ -127,19 +128,19 @@ export const getMediaValue = (block: Block) => {
   return ''
 }
 
-export const getLinkValue = (block: Block) => {
+export const getLinkValue = ({ block }: TransformPrams) => {
   return link(block.title || block.data.link, block.data.link)
 }
 
-export const getEquationValue = (block: Block) => {
+export const getEquationValue = ({ block }: TransformPrams) => {
   return equation(block.title)
 }
 
-export const getCodeValue = (block: Block) => {
+export const getCodeValue = ({ block }: TransformPrams) => {
   return codeBlock(block.title, block.data.format.language)
 }
 
-export const getTableValue = (block: Block, blocks: Blocks) => {
+export const getTableValue = ({ block, blocks }: TransformPrams) => {
   // 找到table，然后找到行，然后按照行来渲染
   // 列顺序items
   const columns = block.data.format.tableBlockColumnOrder

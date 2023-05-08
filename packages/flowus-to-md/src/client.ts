@@ -13,7 +13,9 @@ export class FlowUsToMarkdown {
   constructor(options?: FlowUsToMarkdownOptions) {
     this.flowusClient = options?.client
     this.config = options?.config
-    console.log(this.config)
+    if (this.config) {
+      out.warning('暂不支持此配置', JSON.stringify(this.config))
+    }
   }
 
   public async pageToMarkdown(id: string) {
@@ -44,18 +46,13 @@ export class FlowUsToMarkdown {
         if (needEnter.includes(prevType) && needEnter.includes(curType)) {
           linefeed += '\n'
         }
-        // // 特殊处理有序列表的标号
-        // if (prevType === BlockType.Numbered_List && curType === BlockType.Numbered_List) {
-        //   number += 1
-        //   mdString += transform[curType](block, pageBlocks.blocks, number) + '\n'
-        // } else {
-        //   number = 1
-        //
-        // }
         if (!transform[curType]) {
           out.warning(`暂不支持的块类型: ${curType}-${block.title}`)
         } else {
-          mdString += linefeed + transform[curType](block, pageBlocks.blocks) + '\n'
+          mdString +=
+            linefeed +
+            transform[curType]({ block, blocks: pageBlocks.blocks, pageTitle: firstValue.title }) +
+            '\n'
           prevType = curType
         }
       })
@@ -64,7 +61,6 @@ export class FlowUsToMarkdown {
       out.err('类型错误', '非文档类型')
       process.exit(1)
     }
-
     return mdString
   }
 }
