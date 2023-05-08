@@ -46,6 +46,14 @@ export interface BlockData {
   fullLink: string
   display: string
   link: string
+  schema: Schema
+}
+
+export interface Schema {
+  [key: string]: {
+    name: string
+    type: string
+  }
 }
 
 export interface Block {

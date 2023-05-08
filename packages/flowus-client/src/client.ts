@@ -1,6 +1,7 @@
 import { Blocks, PageBlocks } from '@flowusx/flowus-types'
 import { out, request, RequestOptions } from '@flowusx/flowus-shared'
 import { FlowUsConfig, MediaUrl } from './types'
+import * as process from 'process'
 
 export class FlowUsClient {
   private readonly _baseUrl: string
@@ -27,7 +28,7 @@ export class FlowUsClient {
    * 获取数据表格文档列表
    * @param pageId
    */
-  public async getDataTablePages(pageId: string) {
+  public async getDataTableData(pageId: string) {
     const pageBlocks = await this._fetch<PageBlocks>(`docs/${pageId}`, { method: 'GET' })
     const blocksKeys = Object.keys(pageBlocks.blocks)
     // 第一个节点标记了该Block的属性是文档还是其他
@@ -35,7 +36,7 @@ export class FlowUsClient {
     const firstValue = pageBlocks.blocks[firstKey]
     if (firstValue.type === 18) {
       // 数据表格
-      return firstValue.subNodes
+      return pageBlocks
     } else if (firstValue.type === 0) {
       // 错误类型，请使用getPageBlocks
       out.err('类型错误', '请使用 getPageBlocks 获取页面数据')
@@ -43,7 +44,7 @@ export class FlowUsClient {
       // 错误类型，暂不支持
       out.err('类型错误', '暂不支持的文档类型')
     }
-    return []
+    process.exit(-1)
   }
 
   private async _fetch<T>(endpoint: string, reqOpts?: RequestOptions): Promise<T> {
