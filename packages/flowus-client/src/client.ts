@@ -3,6 +3,9 @@ import { out, request, RequestOptions } from '@flowusx/flowus-shared'
 import { FlowUsConfig, MediaUrl } from './types'
 import * as process from 'process'
 
+/**
+ * FlowUs客户端API
+ */
 export class FlowUsClient {
   private readonly _baseUrl: string
   // private readonly _authToken?: string

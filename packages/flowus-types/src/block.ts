@@ -35,10 +35,11 @@ export interface BlockData {
       lineThrough: boolean
       underline: boolean
       code: boolean
-      [key: string]: any
     }
     text: string
     type: number
+    startDate: string
+    startTime: string
   }[]
   level: number
   checked: boolean

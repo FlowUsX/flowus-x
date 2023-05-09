@@ -6,6 +6,9 @@ import { FlowUsClient } from '@flowusx/flowus-client'
 import { out } from '@flowusx/flowus-shared'
 import * as process from 'process'
 
+/**
+ * FlowUs文档转Md
+ */
 export class FlowUsToMarkdown {
   private readonly flowusClient?: FlowUsClient
   private readonly config?: ConfigOptions

@@ -31,29 +31,41 @@ export const _unsupported = (type: BlockType) => {
   }
 }
 
-export const getTextValue = ({ block }: TransformPrams) => {
+export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
   let str = ''
   block.data.segments?.forEach((item) => {
-    if (item.enhancer.bold) {
-      // 加粗
-      str += bold(item.text)
-    } else if (item.enhancer.underline) {
-      // 下划线
-      str += underline(item.text)
-    } else if (item.enhancer.italic) {
-      // 斜体
-      str += italic(item.text)
-    } else if (item.enhancer.lineThrough) {
-      // 删除线
-      str += strikethrough(item.text)
-    } else if (item.enhancer.code) {
-      // 行内代码
-      str += inlineCode(item.text)
+    if (item.type === 0) {
+      // 文字
+      if (item.enhancer.bold) {
+        // 加粗
+        str += bold(item.text)
+      } else if (item.enhancer.underline) {
+        // 下划线
+        str += underline(item.text)
+      } else if (item.enhancer.italic) {
+        // 斜体
+        str += italic(item.text)
+      } else if (item.enhancer.lineThrough) {
+        // 删除线
+        str += strikethrough(item.text)
+      } else if (item.enhancer.code) {
+        // 行内代码
+        str += inlineCode(item.text)
+      } else {
+        str += item.text
+      }
     } else if (item.type === 8) {
       // 行内公式
       str += inlineEquation(item.text)
-    } else {
-      str += item.text
+    } else if (item.type === 6) {
+      // 日期
+      str += item.startDate + item.startTime
+    } else if (item.type === 4) {
+      // 行内引用页面/行内页面
+      out.warning(`【${pageTitle}】存在暂不支持的块类型: 行内页面/引用页面`)
+    } else if (item.type === 7) {
+      // 人员
+      out.warning(`【${pageTitle}】存在暂不支持的块类型: 人员`)
     }
   })
   return str
