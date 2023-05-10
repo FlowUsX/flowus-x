@@ -2,16 +2,27 @@
   "name": "@flowusx/flowus-client",
   "version": "0.0.1-beta.0",
   "description": "FlowUs 客户端API",
-  "homepage": "https://github.com/FlowUsX/flowus-x#readme",
+  "keywords": ["flowus", "blog", "elog", "hexo", "yuque", "notion"],
+  "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-client/README.md",
   "author": "1874 <me@mail.1874.cool>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowUsX/flowus-x.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FlowUsX/flowus-x/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup"
   },
-  "keywords": [],
-  "license": "ISC",
   "dependencies": {
     "urllib": "^3.13.2",
     "@flowusx/flowus-types": "workspace:*",

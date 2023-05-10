@@ -1,7 +1,22 @@
 {
   "name": "@flowusx/flowus-to-md",
   "version": "0.0.1-beta.0",
-  "description": "",
+  "description": "FlowUs doc to md",
+  "keywords": ["flowus", "blog", "elog", "hexo", "yuque", "notion"],
+  "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-client/README.md",
+  "author": "1874 <me@mail.1874.cool>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowUsX/flowus-x.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FlowUsX/flowus-x/issues"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,9 +24,6 @@
     "build": "tsup"
   },
   "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "markdown-table": "^2.0.0",
     "@flowusx/flowus-types": "workspace:*",
