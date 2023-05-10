@@ -25,8 +25,7 @@ import { out } from '@flowusx/flowus-shared'
 
 export const _unsupported = (type: BlockType) => {
   return ({ pageTitle }: TransformPrams) => {
-    out.warning(`【${pageTitle}】存在暂不支持的块类型: ${BlockTypeText[type]}`)
-    // TODO DEBUG 输出block信息
+    out.debug(`【${pageTitle}】存在暂不支持的块类型: ${BlockTypeText[type]}`)
     return ''
   }
 }
@@ -62,10 +61,10 @@ export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
       str += item.startDate + item.startTime
     } else if (item.type === 4) {
       // 行内引用页面/行内页面
-      out.warning(`【${pageTitle}】存在暂不支持的块类型: 行内页面/引用页面`)
+      out.debug(`【${pageTitle}】存在暂不支持的块类型: 行内页面/引用页面`)
     } else if (item.type === 7) {
       // 人员
-      out.warning(`【${pageTitle}】存在暂不支持的块类型: 人员`)
+      out.debug(`【${pageTitle}】存在暂不支持的块类型: 人员`)
     }
   })
   return str
