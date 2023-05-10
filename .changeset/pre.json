@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@flowusx/flowus-client": "0.0.0",
+    "@flowusx/flowus-shared": "0.0.0",
+    "@flowusx/flowus-to-md": "0.0.0",
+    "@flowusx/flowus-types": "0.0.0"
+  },
+  "changesets": [
+    "selfish-sloths-explode"
+  ]
+}
