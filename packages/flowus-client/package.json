@@ -1,7 +1,9 @@
 {
   "name": "@flowusx/flowus-client",
   "version": "0.0.1-beta.0",
-  "description": "",
+  "description": "FlowUs 客户端API",
+  "homepage": "https://github.com/FlowUsX/flowus-x#readme",
+  "author": "1874 <me@mail.1874.cool>",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -9,7 +11,6 @@
     "build": "tsup"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "urllib": "^3.13.2",
