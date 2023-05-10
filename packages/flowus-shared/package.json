@@ -1,8 +1,15 @@
 {
   "name": "@flowusx/flowus-shared",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "FlowUs Shared Library",
-  "keywords": ["flowus", "blog", "elog", "hexo", "yuque", "notion"],
+  "keywords": [
+    "flowus",
+    "blog",
+    "elog",
+    "hexo",
+    "yuque",
+    "notion"
+  ],
   "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-shared/README.md",
   "author": "1874 <me@mail.1874.cool>",
   "license": "MIT",

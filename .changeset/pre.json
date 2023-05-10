@@ -8,6 +8,7 @@
     "@flowusx/flowus-types": "0.0.0"
   },
   "changesets": [
+    "hot-wombats-complain",
     "selfish-sloths-explode"
   ]
 }
