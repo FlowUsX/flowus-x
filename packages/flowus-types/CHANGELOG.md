@@ -1,5 +1,11 @@
 # @flowusx/flowus-types
 
+## 0.0.1-beta.2
+
+### Patch Changes
+
+- 新增 debug 输出
+
 ## 0.0.1-beta.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @flowusx/flowus-to-md
 
+## 0.0.1-beta.2
+
+### Patch Changes
+
+- 新增 debug 输出
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.1-beta.2
+  - @flowusx/flowus-shared@0.0.1-beta.2
+  - @flowusx/flowus-types@0.0.1-beta.2
+
 ## 0.0.1-beta.1
 
 ### Patch Changes
