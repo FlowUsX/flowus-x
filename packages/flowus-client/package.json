@@ -18,10 +18,10 @@
     "url": "https://github.com/FlowUsX/flowus-x/issues"
   },
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --legacy-output"
   },
   "dependencies": {
     "urllib": "^3.13.2",

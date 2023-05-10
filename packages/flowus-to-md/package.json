@@ -17,13 +17,12 @@
   "bugs": {
     "url": "https://github.com/FlowUsX/flowus-x/issues"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup --legacy-output"
   },
-  "type": "module",
   "dependencies": {
     "markdown-table": "^2.0.0",
     "@flowusx/flowus-types": "workspace:*",
