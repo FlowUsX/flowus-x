@@ -50,7 +50,7 @@ export class FlowUsToMarkdown {
           linefeed += '\n'
         }
         if (!transform[curType]) {
-          out.warning(`暂不支持的块类型: ${curType}-${block.title}`)
+          out.debug(`暂不支持的块类型: ${curType}-${block.title}`)
         } else {
           mdString +=
             linefeed +
