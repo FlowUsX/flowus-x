@@ -31,7 +31,6 @@
     "build": "tsup --legacy-output"
   },
   "dependencies": {
-    "urllib": "^3.13.2",
     "@flowusx/flowus-types": "workspace:*",
     "@flowusx/flowus-shared": "workspace:*"
   }

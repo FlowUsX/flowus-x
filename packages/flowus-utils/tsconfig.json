@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.root",
+  "compilerOptions": {
+//    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "emitDeclarationOnly": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "../flowus-types" }, { "path": "../flowus-shared" }]
+}

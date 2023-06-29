@@ -17,7 +17,7 @@ export const enum BlockType {
   Quote = 12,
   // 着重文字
   Emphasis_Text = 13,
-  // 图片
+  // 媒体
   Media = 14,
   // 内嵌文件夹
   Embed_Folder = 15,
@@ -43,10 +43,12 @@ export const enum BlockType {
   Table_Row = 28,
   // 引用多维表
   Reference_Data_Table = 29,
+  // 引用多维表页面
+  Reference_Data_Table_Page = 33,
   // 思维导图
   Mind_Map = 36,
   // 内嵌思维导图页面
-  Mind_Map_Page = 37,
+  Mind_Map_Inline = 37,
   // 折叠标题
   Toggle_Title = 38,
 }
@@ -76,6 +78,6 @@ export const BlockTypeText = {
   [BlockType.Table_Row]: '表格行',
   [BlockType.Reference_Data_Table]: '引用多维表',
   [BlockType.Mind_Map]: '思维导图',
-  [BlockType.Mind_Map_Page]: '内嵌思维导图页面',
+  [BlockType.Mind_Map_Inline]: '内嵌思维导图页面',
   [BlockType.Toggle_Title]: '折叠标题',
 }

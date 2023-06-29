@@ -13,14 +13,14 @@ export const request = async <T>(
     contentType: 'json',
     dataType: 'json',
     headers: {
-      'User-Agent': '@flowusx/flowus-client',
+      'User-Agent': 'FlowUs X',
       authority: 'flowus.cn',
       app_version_name: '1.51.0',
       ...reqOpts?.headers,
     },
     compressed: true,
     // 超时时间 60s
-    timeout: 60000,
+    timeout: Number(process.env.REQUEST_TIMEOUT) || 60000,
     ...reqOpts,
   }
   return req(url, opts)

@@ -1,7 +1,7 @@
 {
-  "name": "@flowusx/flowus-types",
-  "version": "0.0.1-beta.2",
-  "description": "FlowUs doc to md",
+  "name": "@flowusx/flowus-utils",
+  "version": "0.0.0",
+  "description": "FlowUs 客户端API",
   "keywords": [
     "flowus",
     "blog",
@@ -10,7 +10,7 @@
     "yuque",
     "notion"
   ],
-  "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-client/README.md",
+  "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-utils/README.md",
   "author": "1874 <me@mail.1874.cool>",
   "license": "MIT",
   "publishConfig": {
@@ -24,8 +24,15 @@
   "bugs": {
     "url": "https://github.com/FlowUsX/flowus-x/issues"
   },
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsup"
+  },
+  "dependencies": {
+    "@flowusx/flowus-types": "workspace:*",
+    "is-url-superb": "^6.1.0"
   }
 }

@@ -1,0 +1,50 @@
+{
+  "name": "@flowusx/react-flowus-x",
+  "version": "0.0.0",
+  "description": "FlowUs React Render",
+  "keywords": [
+    "flowus",
+    "blog",
+    "elog",
+    "hexo",
+    "yuque",
+    "notion"
+  ],
+  "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/react-flowus-x/README.md",
+  "author": "1874 <me@mail.1874.cool>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowUsX/flowus-x.git"
+  },
+  "bugs": {
+    "url": "https://github .com/FlowUsX/flowus-x/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@flowusx/flowus-types": "workspace:*",
+    "@flowusx/flowus-utils": "workspace:*",
+    "medium-zoom": "^1.0.8",
+    "classnames": "^2.3.2",
+    "react-lazy-images": "^1.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.12"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  }
+}
