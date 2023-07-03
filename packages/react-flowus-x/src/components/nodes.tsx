@@ -4,8 +4,10 @@ import { FlowUsBlockProps } from '../types'
 import { useFlowUsContext } from '../context'
 import {
   Block,
+  CodeBlock,
   DividingBlock,
   DocBlock,
+  EquationBlock,
   NumberedListBlock,
   QuoteBlock,
   TableBlock,
@@ -16,6 +18,7 @@ import {
   ToggleBlock,
   ToggleTitleBlock,
   UnorderedListBlock,
+  WebBookmarkBlock,
 } from '@flowusx/flowus-types'
 import { Text } from './text'
 import { BlockType } from '../consts/block'
@@ -29,6 +32,8 @@ import {
 import { LinkIcon } from '../icons/link-icon'
 import { MediaWrapper } from './media-wrapper'
 import { PageTitle } from './page-title'
+import { PageIcon } from './page-icon'
+import { LazyImage } from './lazy-image'
 
 const tocIndentLevelCache: {
   [blockId: string]: number
@@ -39,13 +44,100 @@ const tocIndentLevelCache: {
  * 文档
  */
 export const genDocNode = (props: FlowUsBlockProps<DocBlock>) => {
-  const { children, level } = props
+  const { block, children, level, blockId, className } = props
+  const blockTextColor = block.textColor
+  const blockBackgroundColor = block.backgroundColor
+  const { mapPageUrl } = useFlowUsContext()
+  console.log('genDocNode', props)
 
   if (level === 0) {
-    return children
-  }
+    const pageFixedWidth = block.data.pageFixedWidth
 
-  return null
+    return (
+      <div
+        className={cs(
+          'flowus',
+          'flowus-app',
+          // darkMode ? 'dark-mode' : 'light-mode',
+          blockId,
+          className,
+        )}
+      >
+        <div className="flowus-viewport" />
+
+        <div className="flowus-frame">
+          <div className="flowus-page-scroller">
+            <main
+              className={cs(
+                'flowus-page',
+                'flowus-page-no-cover',
+                'flowus-page-no-icon',
+                'flowus-page-has-text-icon',
+                'flowus-full-page',
+                !pageFixedWidth && 'flowus-full-width',
+                // page_small_text && 'flowus-small-text',
+                // bodyClassName,
+              )}
+            >
+              {/*{page_icon && <PageIcon block={block} defaultIcon={defaultPageIcon} inline={false} />}*/}
+
+              {/*{pageHeader}*/}
+
+              {/*<h1 className="flowus-title">*/}
+              {/*  {pageTitle ?? <Text value={properties?.title} block={block} />}*/}
+              {/*</h1>*/}
+
+              {/*{(block.type === 'collection_view_page' ||*/}
+              {/*  (block.type === 'page' && block.parent_table === 'collection')) && (*/}
+              {/*  <components.Collection block={block} ctx={ctx} />*/}
+              {/*)}*/}
+
+              <div
+                className={cs(
+                  'flowus-page-content',
+                  pageFixedWidth && 'flowus-page-content-has-aside',
+                  // hasToc && 'flowus-page-content-has-toc',
+                )}
+              >
+                <article className="flowus-page-content-inner">{children}</article>
+
+                {/*{pageFixedWidth && (*/}
+                {/*  <PageAside*/}
+                {/*    toc={toc}*/}
+                {/*    activeSection={activeSection}*/}
+                {/*    setActiveSection={setActiveSection}*/}
+                {/*    hasToc={hasToc}*/}
+                {/*    hasAside={hasAside}*/}
+                {/*    pageAside={pageAside}*/}
+                {/*  />*/}
+                {/*)}*/}
+              </div>
+
+              {/*{pageFooter}*/}
+            </main>
+
+            {/*{footer}*/}
+          </div>
+        </div>
+      </div>
+    )
+    // return <article className="flowus-page-content-inner">{children}</article>
+  }
+  console.log('genDocNode-123444', block)
+
+  return (
+    <a
+      className={cs(
+        'flowus-page-link',
+        blockTextColor && `flowus-${blockTextColor}`,
+        blockBackgroundColor && `flowus-${blockBackgroundColor}_background`,
+        blockId,
+      )}
+      href={mapPageUrl(block.uuid)}
+    >
+      <PageTitle block={block as any} />
+    </a>
+  )
 }
 
 /**
@@ -53,8 +145,24 @@ export const genDocNode = (props: FlowUsBlockProps<DocBlock>) => {
  * @param props
  */
 export const genTextNode = (props: FlowUsBlockProps<TextBlock>) => {
-  const { block } = props
-  return <Text value={block.data.segments} block={block} />
+  const { block, children, blockId } = props
+  const blockTextColor = block.textColor
+  const blockBackgroundColor = block.backgroundColor
+
+  return (
+    <div
+      className={cs(
+        'flowus-text',
+        blockTextColor && `flowus-${blockTextColor}`,
+        blockBackgroundColor && `flowus-${blockBackgroundColor}_background`,
+        blockId,
+      )}
+    >
+      {block?.title && <Text value={block.data.segments} block={block} />}
+
+      {children && <div className="flowus-text-children">{children}</div>}
+    </div>
+  )
 }
 
 /**
@@ -303,18 +411,18 @@ export const genEmphasisTextNode = (props: FlowUsBlockProps<QuoteBlock>) => {
   const { blockId, children, block } = props
   const blockTextColor = block.textColor
   const blockBackgroundColor = block.backgroundColor
+  console.log('genEmphasisTextNode', block)
   // NOTE 着重文字组件
   return (
     <div
       className={cs(
-        'flowus-emphasis-text',
+        'flowus-emphasis',
         blockTextColor && `flowus-${blockTextColor}`,
         blockBackgroundColor && `flowus-${blockBackgroundColor}_background_co`,
         blockId,
       )}
     >
-      {/*TODO Icon*/}
-      {/*<PageIcon block={block} />*/}
+      <PageIcon block={block as Block} />
 
       <div className="flowus-emphasis-text">
         <Text value={block.data.segments} block={block} />
@@ -338,6 +446,7 @@ export const genMediaNode = (props: FlowUsBlockProps<Block>) => {
  * @param props
  */
 export const genPageLinkNode = (props: FlowUsBlockProps<Block>) => {
+  console.log('genPageLinkNode', props)
   const { blockId, block } = props
   const blockTextColor = block.textColor
   const blockBackgroundColor = block.backgroundColor
@@ -351,11 +460,103 @@ export const genPageLinkNode = (props: FlowUsBlockProps<Block>) => {
         blockBackgroundColor && `flowus-${blockBackgroundColor}_background`,
         blockId,
       )}
-      href={mapPageUrl(block.id)}
+      href={mapPageUrl(block.uuid)}
     >
       <PageTitle block={block} />
     </a>
   )
+}
+
+/**
+ *  书签
+ * @param props
+ */
+export const genBookmarkNode = (props: FlowUsBlockProps<WebBookmarkBlock>) => {
+  console.log('genBookmarkNode', props)
+  const { block, blockId } = props
+  // const { mapImageUrl } = useFlowUsContext()
+  if (!block.data.link) return null
+  let title = getTextContent(block.data.linkInfo)
+  const blockTextColor = block.textColor
+  const blockBackgroundColor = block.backgroundColor
+  return (
+    <div className="flowus-row">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cs(
+          'flowus-bookmark',
+          blockTextColor && `flowus-${blockTextColor}`,
+          blockBackgroundColor && `flowus-${blockBackgroundColor}_background`,
+          blockId,
+        )}
+        href={block.data.link}
+      >
+        <div>
+          {title && (
+            <div className="flowus-bookmark-title">
+              <Text value={block.data.linkInfo} block={block} />
+            </div>
+          )}
+
+          {block.data?.description && (
+            <div className="flowus-bookmark-description">
+              <Text value={block.data?.description} block={block} />
+            </div>
+          )}
+
+          <div className="flowus-bookmark-link">
+            {block.data?.icon && (
+              <div className="flowus-bookmark-link-icon">
+                <LazyImage src={block.data.icon.value} alt={title} block={block as any} />
+              </div>
+            )}
+
+            <div className="flowus-bookmark-link-text">
+              <Text value={[{ text: block.data.link, type: 0, enhancer: {} }]} block={block} />
+            </div>
+          </div>
+        </div>
+
+        {block.data?.cover && (
+          <div className="flowus-bookmark-image">
+            <LazyImage
+              block={block as any}
+              src={block.data.cover}
+              alt={title}
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+        )}
+      </a>
+    </div>
+  )
+}
+
+/**
+ * 公式
+ * @param props
+ */
+export const genEquationNode = (props: FlowUsBlockProps<EquationBlock>) => {
+  const { blockId, block } = props
+  const { components } = useFlowUsContext()
+  console.log('genEquationNode', block.title)
+
+  return <components.Equation math={block.title} inline={false} className={blockId} />
+}
+
+/**
+ * Code
+ * @param props
+ */
+export const genCodeNode = (props: FlowUsBlockProps<CodeBlock>) => {
+  const { block } = props
+  const { components } = useFlowUsContext()
+  console.log('genCodeNode', block.title)
+
+  return <components.Code block={block as any} />
 }
 
 /**
@@ -385,11 +586,11 @@ export const genTableRowNode = (props: FlowUsBlockProps<TableRowBlock>) => {
   const formatMap = tableBlock.data.format?.tableBlockColumnFormat
   const backgroundColor = block.data.format?.backgroundColor
 
-  console.log('tableBlock', tableBlock)
-  console.log('order', order)
-  console.log('block', block)
-  console.log('formatMap', formatMap)
-  console.log('backgroundColor', backgroundColor)
+  // console.log('tableBlock', tableBlock)
+  // console.log('order', order)
+  // console.log('block', block)
+  // console.log('formatMap', formatMap)
+  // console.log('backgroundColor', backgroundColor)
 
   if (!tableBlock || !order) {
     return null
@@ -399,7 +600,7 @@ export const genTableRowNode = (props: FlowUsBlockProps<TableRowBlock>) => {
     <tr
       className={cs(
         'flowus-simple-table-row',
-        backgroundColor && `flowus-${backgroundColor}`,
+        backgroundColor && `flowus-${backgroundColor}_background`,
         blockId,
       )}
     >

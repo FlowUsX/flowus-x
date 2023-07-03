@@ -580,6 +580,7 @@ export interface Decoration {
     lineThrough?: boolean
     italic?: boolean
     code?: boolean
+    textColor?: string
   }
   url?: string
   startDate?: string

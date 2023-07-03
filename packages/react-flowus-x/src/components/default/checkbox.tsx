@@ -12,7 +12,6 @@ export const Checkbox: React.FC<{
     content = (
       <div className="flowus-property-checkbox-checked">
         <CheckIcon />
-        123
       </div>
     )
   } else {

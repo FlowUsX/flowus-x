@@ -5,8 +5,6 @@ import React, { ReactNode } from 'react'
 export type MapPageUrlFn = (pageId: string, recordMap?: PageBlocks) => string
 
 export interface FlowUsComponents {
-  /** 图片资源 */
-  Image: any
   /** 代码块 */
   Code: any
   /** 公式 */

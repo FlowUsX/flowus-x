@@ -41,18 +41,18 @@ export const PageIconImpl: React.FC<{
           src={url}
           alt={title || 'page icon'}
           block={block}
-          className={cs(className, 'notion-page-icon')}
+          className={cs(className, 'flowus-page-icon')}
         />
       )
     } else if (icon && icon.startsWith('/grey/')) {
-      const url = 'https://www.notion.so' + icon
+      const url = 'https://www.flowus.so' + icon
 
       content = (
         <LazyImage
           src={url}
           alt={title || 'page icon'}
           block={block}
-          className={cs(className, 'notion-page-icon')}
+          className={cs(className, 'flowus-page-icon')}
         />
       )
     } else if (!icon) {
@@ -60,7 +60,7 @@ export const PageIconImpl: React.FC<{
         isImage = true
         content = (
           <DefaultPageIcon
-            className={cs(className, 'notion-page-icon')}
+            className={cs(className, 'flowus-page-icon')}
             alt={title ? title : 'page icon'}
           />
         )
@@ -68,7 +68,7 @@ export const PageIconImpl: React.FC<{
     } else {
       isImage = false
       content = (
-        <span className={cs(className, 'notion-page-icon')} role="img" aria-label={icon}>
+        <span className={cs(className, 'flowus-page-icon')} role="img" aria-label={icon}>
           {icon}
         </span>
       )
@@ -82,8 +82,8 @@ export const PageIconImpl: React.FC<{
   return (
     <div
       className={cs(
-        inline ? 'notion-page-icon-inline' : 'notion-page-icon-hero',
-        isImage ? 'notion-page-icon-image' : 'notion-page-icon-span',
+        inline ? 'flowus-page-icon-inline' : 'flowus-page-icon-hero',
+        isImage ? 'flowus-page-icon-image' : 'flowus-page-icon-span',
       )}
     >
       {content}

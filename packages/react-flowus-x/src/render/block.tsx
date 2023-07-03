@@ -1,9 +1,12 @@
 import React, { FC } from 'react'
 import { BlockType } from '../consts/block'
 import {
+  genBookmarkNode,
+  genCodeNode,
   genDividerNode,
   genDocNode,
   genEmphasisTextNode,
+  genEquationNode,
   genListNode,
   genMediaNode,
   genPageLinkNode,
@@ -18,7 +21,7 @@ import {
 import { FlowUsBlockProps } from '../types'
 
 interface ReturnBlockProps {
-  [key: number]: ((props: any) => React.ReactElement) | null
+  [key: number]: ((props: any) => React.ReactElement | null) | null
 }
 
 const blockNodeMap: ReturnBlockProps = {
@@ -33,14 +36,14 @@ const blockNodeMap: ReturnBlockProps = {
   [BlockType.Quote]: genQuoteNode,
   [BlockType.Emphasis_Text]: genEmphasisTextNode,
   [BlockType.Media]: genMediaNode,
-  [BlockType.Embed_Folder]: null,
+  [BlockType.Embed_Folder]: genPageLinkNode,
   [BlockType.Reference_Page]: genPageLinkNode,
   [BlockType.Data_Table]: null,
   [BlockType.Data_Table_Inline]: genPageLinkNode,
   [BlockType.Embed_Webpage]: null,
-  [BlockType.Web_Bookmark]: null,
-  [BlockType.Equation]: null,
-  [BlockType.Code]: null,
+  [BlockType.Web_Bookmark]: genBookmarkNode,
+  [BlockType.Equation]: genEquationNode,
+  [BlockType.Code]: genCodeNode,
   [BlockType.Embed_Media]: genMediaNode,
   [BlockType.Table]: genTableNode,
   [BlockType.Table_Row]: genTableRowNode,

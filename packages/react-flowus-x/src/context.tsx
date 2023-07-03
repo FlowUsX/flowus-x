@@ -2,13 +2,13 @@ import React, { createContext, FC, ReactNode, useContext, useMemo } from 'react'
 import { PageBlocks } from '@flowusx/flowus-types'
 import { FlowUsComponents, MapPageUrlFn } from './types'
 import { Checkbox as DefaultCheckBox } from './components/default/checkbox'
-import {defaultMapPageUrl} from "./utils/map-page-url";
+import { defaultMapPageUrl } from './utils/map-page-url'
+import { Equation } from './lib/equation'
+import { Code } from './lib/code'
 
 const defaultComponents: FlowUsComponents = {
-  Image: null,
-
-  Code: null,
-  Equation: null,
+  Code: Code,
+  Equation: Equation,
 
   Collection: null,
   /** 复选框  */

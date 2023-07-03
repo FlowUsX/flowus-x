@@ -1,16 +1,9 @@
 import React from 'react'
-import { useFlowUsContext } from '../context'
+// import { useFlowUsContext } from '../context'
 import { Decoration, Block } from '@flowusx/flowus-types'
 import cs from 'classnames'
-
-// import { Block, Decoration, ExternalObjectInstance } from 'notion-types'
-// import { parsePageId } from 'notion-utils'
-
-// import { useNotionContext } from '../context'
-// import { formatDate, getHashFragmentValue } from '../utils'
-// import { EOI } from './eoi'
-// import { GracefulImage } from './graceful-image'
-// import { PageTitle } from './page-title'
+import { useFlowUsContext } from '../context'
+import { PageTitle } from './page-title'
 
 interface TextProps<T = Block> {
   value: Decoration[]
@@ -28,134 +21,46 @@ interface TextProps<T = Block> {
  * attributes to the final element's style.
  */
 export const Text = <T = Block,>({ value }: TextProps<T>) => {
-  const { components } = useFlowUsContext()
-  // console.log(block, linkProps, linkProtocol, recordMap)
+  const { components, recordMap, mapPageUrl } = useFlowUsContext()
   return (
     <React.Fragment>
-      {value?.map(({ text, type, enhancer, url, startDate, startTime }, index) => {
+      {value?.map(({ text, uuid, type, enhancer, url, startDate, startTime }, index) => {
         const formatted = (() => {
-          // TODO notion-text-字体
-          const enhancerClass = Object.keys(enhancer).map((key) => `notion-text-${key}`)
+          // TODO flowus-text-字体
+          let enhancerClass = Object.keys(enhancer).map((key) => {
+            if (key === 'textColor') {
+              return `flowus-${enhancer.textColor}`
+            }
+            return `flowus-text-${key}`
+          })
+
+          // 解决下划线和删除线同时存在的问题
+          if (
+            enhancerClass.includes('flowus-text-underline') &&
+            enhancerClass.includes('flowus-text-lineThrough')
+          ) {
+            enhancerClass = enhancerClass.filter((item) => {
+              return item !== 'flowus-text-underline' && item !== 'flowus-text-lineThrough'
+            })
+            enhancerClass.push('flowus-text-underline-lineThrough')
+          }
 
           switch (type) {
-            // case 'p': {
-            //   // link to an internal block (within the current workspace)
-            //   const blockId = decorator[1]
-            //   const linkedBlock = recordMap.block[blockId]?.value
-            //   if (!linkedBlock) {
-            //     console.log('"p" missing block', blockId)
-            //     return null
-            //   }
-            //
-            //   // console.log('p', blockId)
-            //
-            //   return (
-            //     <components.PageLink className="notion-link" href={mapPageUrl(blockId)}>
-            //       <PageTitle block={linkedBlock} />
-            //     </components.PageLink>
-            //   )
-            // }
-
-            // case '‣': {
-            //   // link to an external block (outside of the current workspace)
-            //   const linkType = decorator[1][0]
-            //   const id = decorator[1][1]
-            //
-            //   switch (linkType) {
-            //     case 'u': {
-            //       const user = recordMap.notion_user[id]?.value
-            //
-            //       if (!user) {
-            //         console.log('"‣" missing user', id)
-            //         return null
-            //       }
-            //
-            //       const name = [user.given_name, user.family_name].filter(Boolean).join(' ')
-            //
-            //       return (
-            //         <GracefulImage
-            //           className="notion-user"
-            //           src={mapImageUrl(user.profile_photo, block)}
-            //           alt={name}
-            //         />
-            //       )
-            //     }
-            //
-            //     default: {
-            //       const linkedBlock = recordMap.block[id]?.value
-            //
-            //       if (!linkedBlock) {
-            //         console.log('"‣" missing block', linkType, id)
-            //         return null
-            //       }
-            //
-            //       return (
-            //         <components.PageLink
-            //           className="notion-link"
-            //           href={mapPageUrl(id)}
-            //           {...linkProps}
-            //           target="_blank"
-            //           rel="noopener noreferrer"
-            //         >
-            //           <PageTitle block={linkedBlock} />
-            //         </components.PageLink>
-            //       )
-            //     }
-            //   }
-            // }
-
-            // 内联公式
-            // case 'e':
-            //   return <components.Equation math={decorator[1]} inline />
-
-            // 讨论
-            // case 'm':
-            // comment / discussion
-            // return element //still need to return the base element
-
-            // case 'a': {
-            //   const v = decorator[1]
-            //   const pathname = v.substr(1)
-            //   const id = parsePageId(pathname, { uuid: true })
-            //
-            //   if ((v[0] === '/' || v.includes(rootDomain)) && id) {
-            //     const href = v.includes(rootDomain)
-            //       ? v
-            //       : `${mapPageUrl(id)}${getHashFragmentValue(v)}`
-            //
-            //     return (
-            //       <components.PageLink className="notion-link" href={href} {...linkProps}>
-            //         {element}
-            //       </components.PageLink>
-            //     )
-            //   } else {
-            //     return (
-            //       <components.Link
-            //         className="notion-link"
-            //         href={linkProtocol ? `${linkProtocol}:${decorator[1]}` : decorator[1]}
-            //         {...linkProps}
-            //       >
-            //         {element}
-            //       </components.Link>
-            //     )
-            //   }
-            // }
-
             case 0:
               return <span className={cs(enhancerClass)}>{text}</span>
 
             case 3:
               return (
-                <a target="_blank" className={cs(enhancerClass, 'notion-text-link')} href={url}>
+                <a target="_blank" className={cs(enhancerClass, 'flowus-text-link')} href={url}>
                   {text}
                 </a>
               )
 
             case 4: {
-              // TODO 引用页面等
+              const block = recordMap.blocks[uuid!]
               return (
-                <a className={cs(enhancerClass, 'notion-text-link')} href={url}>
-                  {text}
+                <a className={cs('flowus-link', block.uuid)} href={mapPageUrl(block.uuid)}>
+                  <PageTitle block={block} />
                 </a>
               )
             }
@@ -174,8 +79,8 @@ export const Text = <T = Block,>({ value }: TextProps<T>) => {
             }
 
             case 8: {
-              // 内联公式
               return <components.Equation math={text} inline />
+              // return <span className={cs(enhancerClass)}>{text}</span>
             }
 
             // case 'u': {
@@ -191,7 +96,7 @@ export const Text = <T = Block,>({ value }: TextProps<T>) => {
             //
             //   return (
             //     <GracefulImage
-            //       className="notion-user"
+            //       className="flowus-user"
             //       src={mapImageUrl(user.profile_photo, block)}
             //       alt={name}
             //     />

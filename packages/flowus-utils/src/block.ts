@@ -26,7 +26,7 @@ export function getBlockTitle(block: Block, recordMap: PageBlocks) {
     return block.title
   }
 
-  if (block.type === 33) {
+  if (block.type === 33 || block.type === 16) {
     const collectionId = getBlockCollectionId(block)
 
     if (collectionId) {

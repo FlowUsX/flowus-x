@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
 import { Text } from './text'
-import { Block } from '@flowusx/flowus-types'
+import { Block, Decoration } from '@flowusx/flowus-types'
 import { useFlowUsContext } from '../context'
 import { getBlockTitle } from '@flowusx/flowus-utils'
 import { PageIcon } from './page-icon'
@@ -18,14 +18,27 @@ export const PageTitleImpl: React.FC<{
 
   let title = ''
 
-  if (block.type === BlockType.Reference_Data_Table_Page) {
+  if (
+    block.type === BlockType.Reference_Data_Table_Page ||
+    block.type === BlockType.Reference_Page
+  ) {
     title = getBlockTitle(block, recordMap)
     if (!title) {
       return null
     }
+    const titleDecoration: Decoration[] = [{ text: title, type: 0, enhancer: {} }]
+    return (
+      <span className={cs('flowus-page-title', className)} {...rest}>
+        <PageIcon block={block} defaultIcon={defaultIcon} className="flowus-page-title-icon" />
+
+        <span className="flowus-page-title-text">
+          <Text value={titleDecoration} block={block} />
+        </span>
+      </span>
+    )
   }
 
-  if (!block.properties?.title) {
+  if (!block?.title) {
     return null
   }
 
@@ -34,7 +47,7 @@ export const PageTitleImpl: React.FC<{
       <PageIcon block={block} defaultIcon={defaultIcon} className="flowus-page-title-icon" />
 
       <span className="flowus-page-title-text">
-        <Text value={block.properties?.title} block={block} />
+        <Text value={block?.data.segments} block={block} />
       </span>
     </span>
   )

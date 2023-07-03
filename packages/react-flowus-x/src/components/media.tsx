@@ -11,6 +11,7 @@ export const Media: React.FC<{
   zoomable?: boolean
   className?: string
 }> = ({ block, zoomable = true, className }) => {
+  console.log('Media-block', block)
   if (!block || !supportedAssetTypes.includes(block.data.display)) {
     return null
   }
@@ -33,7 +34,7 @@ export const Media: React.FC<{
     } else {
       style.width = '100%'
     }
-    style.height = height
+    style.height = 'auto'
   } else {
     switch (block.data.format.contentGravity) {
       case 'CENTER': {
@@ -50,7 +51,7 @@ export const Media: React.FC<{
       }
     }
     style.width = width
-    style.height = height
+    style.height = 'auto'
   }
 
   const mediaStyle: CSSProperties = {}
@@ -63,7 +64,7 @@ export const Media: React.FC<{
 
   const isVideo = block.data.extName === 'mp4' || block.data.display === 'video'
 
-  if (isAudio) {
+  if (isVideo) {
     content = (
       <video
         playsInline
@@ -74,14 +75,14 @@ export const Media: React.FC<{
         title={block.title}
       />
     )
-  } else if (isVideo) {
+  } else if (isAudio) {
     const source = block.data.fullLink
     return (
       <div className={cs(className, 'flowus-audio')}>
         <audio controls preload="none" src={source} />
       </div>
     )
-  } else if (block.data.extName === 'image') {
+  } else if (block.data.display === 'image') {
     // 图片类型 图片
     content = (
       <LazyImage
