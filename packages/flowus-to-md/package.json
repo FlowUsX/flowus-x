@@ -28,7 +28,7 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup --legacy-output"
+    "build": "rimraf dist && tsup --legacy-output"
   },
   "dependencies": {
     "markdown-table": "^2.0.0",

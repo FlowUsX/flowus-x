@@ -29,7 +29,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsup"
+    "build": "rimraf dist && tsup"
   },
   "dependencies": {
     "@flowusx/flowus-types": "workspace:*",
