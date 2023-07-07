@@ -32,20 +32,22 @@
   --flowus-brown: rgb(100, 71, 58);
   --flowus-gray: rgb(155, 154, 151);
 
+  --flowus-light_red_background: rgb(255, 211, 211);
   --flowus-red_background: rgb(251, 228, 228);
   --flowus-pink_background: rgb(244, 223, 235);
   --flowus-blue_background: rgb(221, 235, 241);
-  --flowus-purple_background: rgb(234, 228, 242);
+  --flowus-purple_background: rgb(233, 233, 255);
   --flowus-teal_background: rgb(221, 237, 234);
   --flowus-yellow_background: rgb(251, 243, 219);
   --flowus-orange_background: rgb(250, 235, 221);
   --flowus-brown_background: rgb(233, 229, 227);
   --flowus-gray_background: rgb(235, 236, 237);
 
+  --flowus-light_red_background_co: rgba(255, 211, 211, 0.3);
   --flowus-red_background_co: rgba(251, 228, 228, 0.3);
   --flowus-pink_background_co: rgba(244, 223, 235, 0.3);
   --flowus-blue_background_co: rgba(221, 235, 241, 0.3);
-  --flowus-purple_background_co: rgba(234, 228, 242, 0.3);
+  --flowus-purple_background_co: rgba(233, 233, 255, 0.3);
   --flowus-teal_background_co: rgba(221, 237, 234, 0.3);
   --flowus-yellow_background_co: rgba(251, 243, 219, 0.3);
   --flowus-orange_background_co: rgba(250, 235, 221, 0.3);
@@ -343,6 +345,9 @@
 .flowus-gray_co {
   color: var(--flowus-gray);
 }
+.flowus-light_red_background {
+  background-color: var(--flowus-light_red_background);
+}
 .flowus-red_background {
   background-color: var(--flowus-red_background);
 }
@@ -369,6 +374,9 @@
 }
 .flowus-gray_background {
   background-color: var(--flowus-gray_background);
+}
+.flowus-light_red_background_co {
+  background-color: var(--flowus-light_red_background_co);
 }
 .flowus-red_background_co {
   background-color: var(--flowus-red_background_co);
@@ -497,7 +505,7 @@
   line-height: 1.3;
   padding: 3px 2px;
   margin-bottom: 1px;
-  width: 100%;
+  /*width: 100%;*/
   max-width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
@@ -711,10 +719,10 @@ svg.flowus-page-icon {
 }
 
 .flowus-page-icon-inline {
-  width: 22px;
-  height: 22px;
-  max-width: 22px;
-  max-height: 22px;
+  /*width: 16px;*/
+  /*height: 16px;*/
+  max-width: 16px;
+  max-height: 16px;
   margin: 0 4px;
 }
 
@@ -857,11 +865,20 @@ svg.flowus-page-icon {
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.flowus-list-disc:has(> .flowus-text) {
+  padding-inline-start: 0;
+}
+
 .flowus-list-numbered {
   list-style-type: decimal;
   padding-inline-start: 1.6em;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.flowus-list-numbered:has(> .flowus-text) {
+  padding-inline-start: 0;
 }
 
 .flowus-list-disc li {
@@ -906,7 +923,7 @@ svg.flowus-page-icon {
 }
 
 .flowus-text {
-  width: 100%;
+  /*width: 100%;*/
   white-space: pre-wrap;
   word-break: break-word;
   padding: 3px 2px;
@@ -990,7 +1007,7 @@ svg.flowus-page-icon {
 
 .flowus-code-copy-button {
   display: inline-block;
-  padding: 0.6em;
+  padding: 0.4em;
   font-size: 1em;
   line-height: 1em;
   cursor: pointer;
@@ -2090,6 +2107,7 @@ svg.flowus-page-icon {
   padding: 4px 8px;
   margin: 4px 0;
   cursor: pointer;
+  align-items: center;
 }
 
 .flowus-equation:hover {
@@ -2121,8 +2139,8 @@ svg.flowus-page-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 22px;
-  width: 22px;
+  height: 16px;
+  width: 16px;
   border-radius: 3px;
   flex-shrink: 0;
 }
