@@ -107,7 +107,7 @@ export const getToggleValue = ({ block, blocks, pageTitle }: TransformPrams) => 
     const childBlock = blocks[id]
     childrenStr = transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle })
   })
-  return toggle(block.title, childrenStr)
+  return toggle(block.title, childrenStr) + '\n'
 }
 
 export const getTitleValue = ({ block }: TransformPrams) => {
