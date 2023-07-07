@@ -1,6 +1,6 @@
 {
   "name": "flowus-x-example-cra",
-  "version": "6.16.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "GENERATE_SOURCEMAP=false react-scripts start",

@@ -1,5 +1,11 @@
 # @flowusx/flowus-shared
 
+## 0.0.1-beta.3
+
+### Patch Changes
+
+- 修复折叠标题后的文字样式问题
+
 ## 0.0.1-beta.2
 
 ### Patch Changes

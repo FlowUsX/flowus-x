@@ -1,5 +1,14 @@
 # @flowusx/flowus-client
 
+## 0.0.1-beta.3
+
+### Patch Changes
+
+- 修复折叠标题后的文字样式问题
+- Updated dependencies
+  - @flowusx/flowus-shared@0.0.1-beta.3
+  - @flowusx/flowus-types@0.0.1-beta.3
+
 ## 0.0.1-beta.2
 
 ### Patch Changes
