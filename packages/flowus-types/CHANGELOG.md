@@ -1,5 +1,11 @@
 # @flowusx/flowus-types
 
+## 0.0.1-beta.4
+
+### Patch Changes
+
+- 1.新增适配同步块 2.修复折叠标题块
+
 ## 0.0.1-beta.3
 
 ### Patch Changes
