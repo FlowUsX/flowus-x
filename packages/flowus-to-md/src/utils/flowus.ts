@@ -30,6 +30,11 @@ export const _unsupported = (type: BlockType) => {
   }
 }
 
+/**
+ * 文字
+ * @param block
+ * @param pageTitle
+ */
 export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
   let str = ''
   block.data.segments?.forEach((item) => {
@@ -70,10 +75,20 @@ export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
   return str
 }
 
+/**
+ * 待办事项
+ * @param block
+ */
 export const getTodoValue = ({ block }: TransformPrams) => {
   return todo(block.title, block.data.checked)
 }
 
+/**
+ * 无序列表
+ * @param block
+ * @param blocks
+ * @param pageTitle
+ */
 export const getUnorderedListValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = '\n'
   const childrenIds = block.subNodes
@@ -87,6 +102,12 @@ export const getUnorderedListValue = ({ block, blocks, pageTitle }: TransformPra
   return bullet(block.title) + childrenStr
 }
 
+/**
+ * 有序列表
+ * @param block
+ * @param blocks
+ * @param pageTitle
+ */
 export const getNumberedListValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = '\n'
   const childrenIds = block.subNodes
@@ -100,28 +121,49 @@ export const getNumberedListValue = ({ block, blocks, pageTitle }: TransformPram
   return bullet(block.title, 1) + childrenStr
 }
 
+/**
+ * 折叠
+ * @param block
+ * @param blocks
+ * @param pageTitle
+ */
 export const getToggleValue = ({ block, blocks, pageTitle }: TransformPrams) => {
   let childrenStr = ''
   const childrenIds = block.subNodes
   childrenIds.forEach((id) => {
     const childBlock = blocks[id]
-    childrenStr = transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle })
+    childrenStr += transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle })
   })
   return toggle(block.title, childrenStr) + '\n'
 }
 
+/**
+ * 标题
+ * @param block
+ */
 export const getTitleValue = ({ block }: TransformPrams) => {
   return heading(block.title, block.data.level)
 }
 
+/**
+ * 分割线
+ */
 export const getDividingValue = () => {
   return divider()
 }
 
+/**
+ * 引用
+ * @param block
+ */
 export const getQuoteValue = ({ block }: TransformPrams) => {
   return quote(block.title)
 }
 
+/**
+ * 着重文字
+ * @param block
+ */
 export const getEmphasisTextValue = ({ block }: TransformPrams) => {
   let text = block.title
   if (block.data.icon.type === 'emoji') {
@@ -130,6 +172,10 @@ export const getEmphasisTextValue = ({ block }: TransformPrams) => {
   return quote(text)
 }
 
+/**
+ * 媒体
+ * @param block
+ */
 export const getMediaValue = ({ block }: TransformPrams) => {
   if (block.data.display === 'image') {
     return image(block.title, block.data.fullLink || block.data.ossName)
@@ -139,18 +185,35 @@ export const getMediaValue = ({ block }: TransformPrams) => {
   return ''
 }
 
+/**
+ * 链接
+ * @param block
+ */
 export const getLinkValue = ({ block }: TransformPrams) => {
   return link(block.title || block.data.link, block.data.link)
 }
 
+/**
+ * 公式
+ * @param block
+ */
 export const getEquationValue = ({ block }: TransformPrams) => {
   return equation(block.title)
 }
 
+/**
+ * 代码块
+ * @param block
+ */
 export const getCodeValue = ({ block }: TransformPrams) => {
   return codeBlock(block.title, block.data.format.language)
 }
 
+/**
+ * 表格
+ * @param block
+ * @param blocks
+ */
 export const getTableValue = ({ block, blocks }: TransformPrams) => {
   // 找到table，然后找到行，然后按照行来渲染
   // 列顺序items
@@ -178,6 +241,23 @@ export const getTableValue = ({ block, blocks }: TransformPrams) => {
   return '\n' + table(cells) + '\n'
 }
 
+/**
+ * 同步块
+ * @param block
+ * @param blocks
+ * @param pageTitle
+ */
+export const getSyncBlockValue = ({ block, blocks, pageTitle }: TransformPrams) => {
+  let childrenStr = ''
+  const childrenIds = block.subNodes
+  childrenIds.forEach((id) => {
+    const childBlock = blocks[id]
+    childrenStr +=
+      transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle }) + '\n'
+  })
+  return childrenStr
+}
+
 export const transform: Transform = {
   [BlockType.Doc]: _unsupported(BlockType.Doc),
   [BlockType.Text]: getTextValue,
@@ -202,6 +282,7 @@ export const transform: Transform = {
   [BlockType.Table]: getTableValue,
   [BlockType.Table_Row]: _unsupported(BlockType.Table_Row),
   [BlockType.Reference_Data_Table]: _unsupported(BlockType.Reference_Data_Table),
+  [BlockType.Sync_Block]: getSyncBlockValue,
   [BlockType.Mind_Map]: _unsupported(BlockType.Mind_Map),
   [BlockType.Mind_Map_Page]: _unsupported(BlockType.Mind_Map_Page),
   [BlockType.Toggle_Title]: getToggleValue,

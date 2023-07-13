@@ -43,6 +43,8 @@ export const enum BlockType {
   Table_Row = 28,
   // 引用多维表
   Reference_Data_Table = 29,
+  // 同步块
+  Sync_Block = 31,
   // 思维导图
   Mind_Map = 36,
   // 内嵌思维导图页面
@@ -75,6 +77,7 @@ export const BlockTypeText = {
   [BlockType.Table]: '表格',
   [BlockType.Table_Row]: '表格行',
   [BlockType.Reference_Data_Table]: '引用多维表',
+  [BlockType.Sync_Block]: '同步块',
   [BlockType.Mind_Map]: '思维导图',
   [BlockType.Mind_Map_Page]: '内嵌思维导图页面',
   [BlockType.Toggle_Title]: '折叠标题',

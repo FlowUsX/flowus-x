@@ -43,6 +43,8 @@ export const enum BlockType {
   Table_Row = 28,
   // 引用多维表
   Reference_Data_Table = 29,
+  // 同步块
+  Sync_Block = 31,
   // 引用多维表页面
   Reference_Data_Table_Page = 33,
   // 思维导图

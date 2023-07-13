@@ -1,17 +1,15 @@
 import { Blocks, PageBlocks } from '@flowusx/flowus-types'
 import { out, request, RequestOptions } from '@flowusx/flowus-shared'
 import { FlowUsConfig, MediaUrl } from './types'
-import * as process from 'process'
+import process from 'process'
 
 /**
  * FlowUs客户端API
  */
 export class FlowUsClient {
   private readonly _baseUrl: string
-  // private readonly _authToken?: string
   constructor(config?: FlowUsConfig) {
     this._baseUrl = config?.baseUrl || 'https://flowus.cn/api'
-    // this._authToken = authToken
   }
 
   /**
