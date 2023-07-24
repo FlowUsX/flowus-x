@@ -1,5 +1,5 @@
-import { FlowUsClient } from '@flowusx/flowus-client'
-import { FlowUsToMarkdown } from '@flowusx/flowus-to-md'
+import { FlowUsClient } from 'packages/flowus-client/src'
+import { FlowUsToMarkdown } from 'packages/flowus-to-md/src'
 import * as fs from 'fs'
 const flowUsClient = new FlowUsClient()
 const flowUsToMd = new FlowUsToMarkdown({ client: flowUsClient })

@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.root.json",
+  "compilerOptions": {
+//    "composite": true,
+    "rootDir": "src",
+    "outDir": "build",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "emitDeclarationOnly": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "../flowus-client" }, { "path": "../flowus-to-md" }]
+}
