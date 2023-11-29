@@ -1,6 +1,6 @@
 {
   "name": "@flowusx/flowus-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "FlowUs 客户端API",
   "keywords": [
     "flowus",
