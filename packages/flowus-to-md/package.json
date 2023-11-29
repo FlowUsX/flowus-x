@@ -1,6 +1,6 @@
 {
   "name": "@flowusx/flowus-to-md",
-  "version": "0.0.4",
+  "version": "0.0.5-beta.0",
   "description": "FlowUs doc to md",
   "keywords": [
     "flowus",

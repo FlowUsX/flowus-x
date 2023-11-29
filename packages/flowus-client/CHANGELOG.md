@@ -1,5 +1,14 @@
 # @flowusx/flowus-client
 
+## 0.0.5-beta.0
+
+### Patch Changes
+
+- 修复 flowUs 链接
+- Updated dependencies
+  - @flowusx/flowus-shared@0.0.5-beta.0
+  - @flowusx/flowus-types@0.0.5-beta.0
+
 ## 0.0.4
 
 ### Patch Changes

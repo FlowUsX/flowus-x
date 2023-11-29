@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "flowus-x-example-cra": "0.0.0",
+    "examples": "1.0.1",
+    "@flowusx/flowus-client": "0.0.4",
+    "@flowusx/flowus-shared": "0.0.4",
+    "@flowusx/flowus-to-md": "0.0.4",
+    "@flowusx/flowus-types": "0.0.4",
+    "@flowusx/flowus-utils": "0.0.0",
+    "@flowusx/react-flowus-x": "0.0.0"
+  },
+  "changesets": [
+    "silly-snakes-judge"
+  ]
+}

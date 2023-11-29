@@ -18,9 +18,9 @@ export class FlowUsClient {
    */
   public async getPageBlocks(pageId: string) {
     const pageBlocks = await this._fetch<PageBlocks>(`docs/${pageId}`, { method: 'GET' })
-    // 处理图片链接
-    // 获取可下载的图片链接
-    pageBlocks.blocks = await this.getOssUrl(pageBlocks.blocks)
+    // // 处理图片链接
+    // // 获取可下载的图片链接
+    // pageBlocks.blocks = await this.getOssUrl(pageBlocks.blocks)
 
     return pageBlocks
   }
@@ -37,6 +37,7 @@ export class FlowUsClient {
     const firstValue = pageBlocks.blocks[firstKey]
     if (firstValue.type === 18) {
       // 数据表格
+      pageBlocks.blocks = await this.getOssUrl(pageBlocks.blocks)
       return pageBlocks
     } else if (firstValue.type === 0) {
       // 错误类型，请使用getPageBlocks
