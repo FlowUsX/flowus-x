@@ -58,6 +58,9 @@ export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
       } else {
         str += item.text
       }
+    } else if (item.type === 3) {
+      // 链接
+      str += link(item.text, item.url)
     } else if (item.type === 8) {
       // 行内公式
       str += inlineEquation(item.text)

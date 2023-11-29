@@ -38,6 +38,7 @@ export interface BlockData {
       underline: boolean
       code: boolean
     }
+    url: string
     text: string
     type: number
     startDate: string
@@ -152,6 +153,7 @@ export interface BaseBlock {
 export interface BaseBlockData {
   segments: {
     text: string
+    url: string
     type: number
     enhancer: {
       bold?: boolean
