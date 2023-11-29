@@ -178,9 +178,9 @@ export const getEmphasisTextValue = ({ block }: TransformPrams) => {
  */
 export const getMediaValue = ({ block }: TransformPrams) => {
   if (block.data.display === 'image') {
-    return image(block.title, block.data.fullLink || block.data.ossName)
+    return image(block.title, block.data.link || block.data.fullLink || block.data.ossName)
   } else if (block.data.display === 'video') {
-    return link(block.title, block.data.fullLink || block.data.ossName)
+    return link(block.title, block.data.link || block.data.fullLink || block.data.ossName)
   }
   return ''
 }

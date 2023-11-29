@@ -65,6 +65,13 @@ export class FlowUsClient {
           ossName: block.data.ossName,
         })
       }
+      if (block.type === 0 && block.data.cover) {
+        // 文档类型
+        mediaBlocks.push({
+          blockId: block.uuid,
+          ossName: block.data.cover,
+        })
+      }
     })
     const data = {
       batch: mediaBlocks,
