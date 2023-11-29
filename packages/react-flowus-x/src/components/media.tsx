@@ -26,7 +26,7 @@ export const Media: React.FC<{
     flexDirection: 'column',
   }
 
-  const { width, height, blockFullWidth, blockPageWidth } = block.data.format
+  const { width, blockFullWidth, blockPageWidth } = block.data.format
 
   if (blockFullWidth || blockPageWidth) {
     if (blockFullWidth) {
@@ -71,12 +71,12 @@ export const Media: React.FC<{
         controls
         preload="metadata"
         style={mediaStyle}
-        src={block.data.fullLink}
+        src={block.data.link}
         title={block.title}
       />
     )
   } else if (isAudio) {
-    const source = block.data.fullLink
+    const source = block.data.link
     return (
       <div className={cs(className, 'flowus-audio')}>
         <audio controls preload="none" src={source} />
@@ -88,7 +88,7 @@ export const Media: React.FC<{
       <LazyImage
         block={block}
         zoomable={zoomable}
-        height={style.height as number}
+        height={style.height as any as number}
         style={mediaStyle}
       />
     )

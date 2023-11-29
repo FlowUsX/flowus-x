@@ -1,7 +1,6 @@
 :root {
-  --flowus-font: ui-sans-serif, system-ui, apple-system, BlinkMacSystemFont,
-    'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif,
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+  --flowus-font: ui-sans-serif, system-ui, apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+    'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
   --fg-color: rgb(55, 53, 47);
   --fg-color-0: rgba(55, 53, 47, 0.09);
   --fg-color-1: rgba(55, 53, 47, 0.16);
@@ -233,8 +232,7 @@
   line-height: 1;
 }
 
-.flowus-aside-table-of-contents
-  .flowus-table-of-contents-item-indent-level-0:first-of-type {
+.flowus-aside-table-of-contents .flowus-table-of-contents-item-indent-level-0:first-of-type {
   margin-top: 0;
 }
 
@@ -526,7 +524,7 @@
 .flowus-title + .flowus-h1,
 .flowus-title + .flowus-h2,
 .flowus-title + .flowus-h3,
-.flowus-title + .flowus-h4{
+.flowus-title + .flowus-h4 {
   margin-top: 0;
 }
 /* TODO: flowus-page-content */
@@ -697,8 +695,8 @@
 }
 
 .flowus-page-icon {
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji,
-    'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Noto Color Emoji',
+    'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
   font-size: 1.1em;
   fill: var(--fg-color-6);
   color: var(--fg-color-icon);
@@ -845,8 +843,7 @@ svg.flowus-page-icon {
   background: var(--bg-color-2);
   border-radius: 3px;
   font-size: 85%;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
-    monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 .flowus-inline-underscore {
@@ -952,7 +949,6 @@ svg.flowus-page-icon {
 
 .flowus-text-underline {
   text-decoration-line: underline;
-
 }
 
 .flowus-text-lineThrough {
@@ -968,8 +964,7 @@ svg.flowus-page-icon {
 }
 
 .flowus-text-code {
-  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier,
-    monospace;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   background: var(--bg-color-2);
   padding: 0.2em 0.4em;
   border-radius: 3px;
@@ -992,8 +987,7 @@ svg.flowus-page-icon {
   box-sizing: border-box;
   overflow: auto;
   background: var(--bg-color-1);
-  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier,
-    monospace;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 .flowus-code-copy {
@@ -1006,17 +1000,20 @@ svg.flowus-page-icon {
 }
 
 .flowus-code-copy-button {
-  display: inline-block;
-  padding: 0.4em;
+  display: flex;
+  align-items: center;
+}
+
+.flowus-code-copy-button .flowus-code-copy-text {
+  margin-left: 10px;
   font-size: 1em;
   line-height: 1em;
+  display: inline-block;
+  padding: 0.4em;
   cursor: pointer;
-
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1),
-    color 0.2s cubic-bezier(0.3, 0, 0.5, 1),
-    border-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    color 0.2s cubic-bezier(0.3, 0, 0.5, 1), border-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   background-color: #f6f8fa;
 
   color: #24292f;
@@ -1024,13 +1021,13 @@ svg.flowus-page-icon {
   border-radius: 6px;
 }
 
-.flowus-code-copy-button:hover {
+.flowus-code-copy-button .flowus-code-copy-text:hover {
   background-color: #f3f4f6;
   border-color: rgba(27, 31, 36, 0.15);
   transition-duration: 0.1s;
 }
 
-.flowus-code-copy-button:active {
+.flowus-code-copy-button .flowus-code-copy-text:active {
   background: hsla(220, 14%, 93%, 1);
   border-color: rgba(27, 31, 36, 0.15);
   transition: none;
@@ -1042,10 +1039,6 @@ svg.flowus-page-icon {
 
 .flowus-code:hover .flowus-code-copy {
   opacity: 1;
-}
-
-.flowus-code-copy-button svg {
-  display: block;
 }
 
 .flowus-code-copy-tooltip {
@@ -1223,6 +1216,8 @@ svg.flowus-page-icon {
 }
 
 .flowus-asset-caption {
+  display: flex;
+  align-items: center;
   padding: 6px 0 6px 2px;
   white-space: pre-wrap;
   word-break: break-word;
@@ -1230,6 +1225,16 @@ svg.flowus-page-icon {
   font-size: 14px;
   line-height: 1.4;
   color: var(--fg-color-3);
+  justify-content: space-between;
+}
+
+.flowus-asset-caption .left {
+  display: flex;
+  align-items: center;
+}
+.flowus-asset-caption .right {
+  display: flex;
+  align-items: center;
 }
 
 .flowus-emphasis {
@@ -1844,15 +1849,11 @@ svg.flowus-page-icon {
   height: 148px;
 }
 
-.flowus-board-view-size-small
-  .flowus-collection-card
-  .flowus-collection-card-cover {
+.flowus-board-view-size-small .flowus-collection-card .flowus-collection-card-cover {
   height: 100px;
 }
 
-.flowus-board-view-size-large
-  .flowus-collection-card
-  .flowus-collection-card-cover {
+.flowus-board-view-size-large .flowus-collection-card .flowus-collection-card-cover {
   height: 180px;
 }
 
@@ -2172,9 +2173,7 @@ svg.flowus-page-icon {
   border-bottom: 0 none;
 }
 
-.flowus-collection-card-property
-  .flowus-property-relation
-  .flowus-page-title-text {
+.flowus-collection-card-property .flowus-property-relation .flowus-page-title-text {
   border-bottom: 1px solid;
 }
 
@@ -2242,9 +2241,7 @@ svg.flowus-page-icon {
   border-bottom: 0 none;
 }
 
-.flowus-collection-row-property
-  .flowus-property-relation
-  .flowus-page-title-text {
+.flowus-collection-row-property .flowus-property-relation .flowus-page-title-text {
   border-bottom: 1px solid;
 }
 
@@ -2336,8 +2333,7 @@ svg.flowus-page-icon {
 }
 
 .lazy-image-real.medium-zoom-image {
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1),
-    opacity 400ms ease-out !important;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 400ms ease-out !important;
   will-change: opacity, transform;
 }
 
@@ -2519,8 +2515,8 @@ svg.flowus-page-icon {
 }
 
 .flowus-search {
-  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
-    rgba(15, 15, 15, 0.1) 0px 5px 10px, rgba(15, 15, 15, 0.2) 0px 15px 40px;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 5px 10px,
+    rgba(15, 15, 15, 0.2) 0px 15px 40px;
   border-radius: 3px;
   background: var(--bg-color);
 
@@ -2814,7 +2810,7 @@ svg.flowus-page-icon {
   box-shadow: rgba(15, 15, 15, 0.1) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 2px 4px;
 }
 
-.flowus-external-mention .flowus-external-subtitle-item{
+.flowus-external-mention .flowus-external-subtitle-item {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -2823,37 +2819,36 @@ svg.flowus-page-icon {
   padding: 4px 0;
 }
 
-.flowus-external-mention .flowus-external-subtitle-item-name{
+.flowus-external-mention .flowus-external-subtitle-item-name {
   flex: none;
   width: 70px;
   font-weight: 500;
 }
 
-.flowus-external-mention .flowus-external-subtitle-item-desc{
-  flex: 1
+.flowus-external-mention .flowus-external-subtitle-item-desc {
+  flex: 1;
 }
 
 .flowus-external-description:hover .flowus-external-subtitle {
   display: block;
 }
 
-.flowus-preview-card-domain-warp{
+.flowus-preview-card-domain-warp {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
 
-.flowus-preview-card-domain-warp .flowus-preview-card-domain{
-padding-left: 4px;
-
+.flowus-preview-card-domain-warp .flowus-preview-card-domain {
+  padding-left: 4px;
 }
-.flowus-preview-card-domain-warp .flowus-preview-card-logo{
+.flowus-preview-card-domain-warp .flowus-preview-card-logo {
   width: 14px;
   height: 14px;
 }
 
-.flowus-preview-card-title{
+.flowus-preview-card-title {
   font-size: 16px;
   line-height: 1.5;
   padding: 4px 0;
@@ -2944,8 +2939,7 @@ padding-left: 4px;
   background: #fff;
   border-radius: 6;
   padding: 0;
-  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   animation-fill-mode: forwards;
@@ -2956,7 +2950,7 @@ padding-left: 4px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 120%
+  width: 120%;
 }
 
 .flowus-collection-view-tabs-content-item {
@@ -3006,9 +3000,9 @@ padding-left: 4px;
 }
 
 .nested-form-link {
-  background: none!important;
+  background: none !important;
   border: none;
-  padding: 0!important;
+  padding: 0 !important;
   text-decoration: underline;
   cursor: pointer;
 }

@@ -36,7 +36,7 @@ const blockNodeMap: ReturnBlockProps = {
   [BlockType.Quote]: genQuoteNode,
   [BlockType.Emphasis_Text]: genEmphasisTextNode,
   [BlockType.Media]: genMediaNode,
-  [BlockType.Embed_Folder]: genPageLinkNode,
+  [BlockType.Embed_Folder]: null,
   [BlockType.Reference_Page]: genPageLinkNode,
   [BlockType.Data_Table]: null,
   [BlockType.Data_Table_Inline]: genPageLinkNode,

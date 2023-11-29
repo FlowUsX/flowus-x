@@ -4,6 +4,7 @@ import { Media } from './media'
 import { Block } from '@flowusx/flowus-types'
 import { useFlowUsContext } from '../context'
 import { PageTitle } from './page-title'
+import cs from 'classnames'
 
 export const MediaWrapper: React.FC<{
   block: Block
@@ -23,7 +24,18 @@ export const MediaWrapper: React.FC<{
 
   console.log('MediaWrapper-isMediaView', isMediaView)
   if (isMediaView) {
-    return <Media block={value} zoomable={zoom} />
+    return (
+      <figure
+        className={cs(
+          'flowus-asset-wrapper',
+          `flowus-asset-wrapper-${block.type}`,
+          value.format?.blockFullWidth && 'flowus-asset-wrapper-full',
+          block.uuid,
+        )}
+      >
+        <Media block={value} zoomable={zoom} />
+      </figure>
+    )
   } else if (isFileUrl) {
     return (
       <a href={mapPageUrl(block.uuid)}>

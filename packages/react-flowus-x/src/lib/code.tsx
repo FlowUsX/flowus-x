@@ -14,7 +14,6 @@ import 'prismjs/components/prism-tsx.min.js'
 import 'prismjs/components/prism-typescript.min.js'
 
 import { Text } from '../components/text'
-import CopyIcon from '../icons/copy'
 import cs from 'classnames'
 import { useFlowUsContext } from '../context'
 import { getBlockTitle } from '@flowusx/flowus-utils'
@@ -54,13 +53,14 @@ export const Code: React.FC<{
 
     copyTimeout.current = setTimeout(() => {
       setIsCopied(false)
-    }, 1200) as unknown as number
+    }, 1000) as unknown as number
   }, [content, copyTimeout])
 
   const copyButton = useMemo(() => {
     return (
       <div className="flowus-code-copy-button" onClick={onClickCopyToClipboard}>
-        {isCopied ? 'Copied' : <CopyIcon />}
+        <span className="flowus-code-language">{block.data.format.language}</span>
+        <span className="flowus-code-copy-text">{isCopied ? '复制成功' : '复制代码'}</span>
       </div>
     )
   }, [isCopied])
