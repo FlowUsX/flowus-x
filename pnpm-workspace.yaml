@@ -1,3 +1,6 @@
 packages:
-  - 'packages/**'
-  - 'examples/**'
+  - 'packages/flowus-client'
+  - 'packages/flowus-shared'
+  - 'packages/flowus-to-md'
+  - 'packages/flowus-types'
+#  - 'examples/**'
