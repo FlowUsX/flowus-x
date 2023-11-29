@@ -81,9 +81,12 @@ export const getTextValue = ({ block, pageTitle }: TransformPrams) => {
 /**
  * 待办事项
  * @param block
+ * @param blocks
+ * @param pageTitle
  */
-export const getTodoValue = ({ block }: TransformPrams) => {
-  return todo(block.title, block.data.checked)
+export const getTodoValue = ({ block, blocks, pageTitle }: TransformPrams) => {
+  const text = getTextValue({ blocks, block, pageTitle })
+  return todo(text, block.data.checked)
 }
 
 /**
@@ -102,7 +105,8 @@ export const getUnorderedListValue = ({ block, blocks, pageTitle }: TransformPra
       1,
     )
   })
-  return bullet(block.title) + childrenStr
+  const text = getTextValue({ blocks, block, pageTitle })
+  return bullet(text) + childrenStr
 }
 
 /**
@@ -121,7 +125,8 @@ export const getNumberedListValue = ({ block, blocks, pageTitle }: TransformPram
       1,
     )
   })
-  return bullet(block.title, 1) + childrenStr
+  const text = getTextValue({ blocks, block, pageTitle })
+  return bullet(text, 1) + childrenStr
 }
 
 /**
@@ -137,15 +142,19 @@ export const getToggleValue = ({ block, blocks, pageTitle }: TransformPrams) => 
     const childBlock = blocks[id]
     childrenStr += transform[childBlock.type as BlockType]({ block: childBlock, blocks, pageTitle })
   })
-  return toggle(block.title, childrenStr) + '\n'
+  const text = getTextValue({ blocks, block, pageTitle })
+  return toggle(text, childrenStr) + '\n'
 }
 
 /**
  * 标题
  * @param block
+ * @param blocks
+ * @param pageTitle
  */
-export const getTitleValue = ({ block }: TransformPrams) => {
-  return heading(block.title, block.data.level)
+export const getTitleValue = ({ block, blocks, pageTitle }: TransformPrams) => {
+  const text = getTextValue({ blocks, block, pageTitle })
+  return heading(text, block.data.level)
 }
 
 /**
@@ -158,17 +167,22 @@ export const getDividingValue = () => {
 /**
  * 引用
  * @param block
+ * @param blocks
+ * @param pageTitle
  */
-export const getQuoteValue = ({ block }: TransformPrams) => {
-  return quote(block.title)
+export const getQuoteValue = ({ block, blocks, pageTitle }: TransformPrams) => {
+  const text = getTextValue({ blocks, block, pageTitle })
+  return quote(text)
 }
 
 /**
  * 着重文字
+ * @param blocks
  * @param block
+ * @param pageTitle
  */
-export const getEmphasisTextValue = ({ block }: TransformPrams) => {
-  let text = block.title
+export const getEmphasisTextValue = ({ blocks, block, pageTitle }: TransformPrams) => {
+  let text = getTextValue({ blocks, block, pageTitle })
   if (block.data.icon.type === 'emoji') {
     text = block.data.icon.value + ' ' + text
   }
@@ -190,10 +204,13 @@ export const getMediaValue = ({ block }: TransformPrams) => {
 
 /**
  * 链接
+ * @param blocks
  * @param block
+ * @param pageTitle
  */
-export const getLinkValue = ({ block }: TransformPrams) => {
-  return link(block.title || block.data.link, block.data.link)
+export const getLinkValue = ({ blocks, block, pageTitle }: TransformPrams) => {
+  let text = getTextValue({ blocks, block, pageTitle })
+  return link(text || block.data.link, block.data.link)
 }
 
 /**
