@@ -7,6 +7,7 @@
   "scripts": {
     "test": "ts-node-esm src/test-md.ts"
   },
+  "private": true,
   "keywords": [],
   "author": "",
   "license": "ISC",

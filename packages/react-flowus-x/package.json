@@ -13,6 +13,7 @@
   "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/react-flowus-x/README.md",
   "author": "1874 <me@mail.1874.cool>",
   "license": "MIT",
+  "private": true,
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
