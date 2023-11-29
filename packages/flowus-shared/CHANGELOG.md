@@ -1,5 +1,11 @@
 # @flowusx/flowus-shared
 
+## 0.0.5-beta.2
+
+### Patch Changes
+
+- 修复 flowus 文本缺失
+
 ## 0.0.5-beta.1
 
 ### Patch Changes

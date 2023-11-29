@@ -12,6 +12,7 @@
     "@flowusx/react-flowus-x": "0.0.0"
   },
   "changesets": [
+    "curvy-rice-serve",
     "silly-snakes-judge",
     "tender-mangos-doubt"
   ]
