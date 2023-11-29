@@ -1,5 +1,11 @@
 # @flowusx/flowus-types
 
+## 0.0.5-beta.1
+
+### Patch Changes
+
+- 图片下载配置
+
 ## 0.0.5-beta.0
 
 ### Patch Changes

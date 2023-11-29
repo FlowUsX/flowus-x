@@ -1,5 +1,15 @@
 # @flowusx/flowus-to-md
 
+## 0.0.5-beta.1
+
+### Patch Changes
+
+- 图片下载配置
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.5-beta.1
+  - @flowusx/flowus-shared@0.0.5-beta.1
+  - @flowusx/flowus-types@0.0.5-beta.1
+
 ## 0.0.5-beta.0
 
 ### Patch Changes
