@@ -1,5 +1,15 @@
 # @flowusx/flowus-to-md
 
+## 0.0.3
+
+### Patch Changes
+
+- 0.0.3
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.3
+  - @flowusx/flowus-shared@0.0.3
+  - @flowusx/flowus-types@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

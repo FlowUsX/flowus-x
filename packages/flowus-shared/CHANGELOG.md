@@ -1,5 +1,11 @@
 # @flowusx/flowus-shared
 
+## 0.0.3
+
+### Patch Changes
+
+- 0.0.3
+
 ## 0.0.1
 
 ### Patch Changes
