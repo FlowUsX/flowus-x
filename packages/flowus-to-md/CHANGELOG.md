@@ -1,5 +1,13 @@
 # @flowusx/flowus-to-md
 
+## 0.0.2
+
+### Patch Changes
+
+- 修复 flowus 外部链接
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.2
+
 ## 0.0.1
 
 ### Patch Changes
