@@ -1,5 +1,11 @@
 # @flowusx/flowus-types
 
+## 0.0.5-beta.3
+
+### Patch Changes
+
+- 代码块 language 修复
+
 ## 0.0.5-beta.2
 
 ### Patch Changes

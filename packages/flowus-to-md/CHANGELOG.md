@@ -1,5 +1,15 @@
 # @flowusx/flowus-to-md
 
+## 0.0.5-beta.3
+
+### Patch Changes
+
+- 代码块 language 修复
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.5-beta.3
+  - @flowusx/flowus-shared@0.0.5-beta.3
+  - @flowusx/flowus-types@0.0.5-beta.3
+
 ## 0.0.5-beta.2
 
 ### Patch Changes
