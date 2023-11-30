@@ -29,7 +29,8 @@ export const link = (text: string, href: string) => {
 }
 
 export const codeBlock = (text: string, language?: string) => {
-  if (language === 'plain text') language = 'text'
+  language = language?.toLowerCase()
+  if (language === 'plain text') language = 'plaintext'
 
   return `\`\`\`${language}
 ${text}
