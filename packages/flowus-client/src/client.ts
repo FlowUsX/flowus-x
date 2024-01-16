@@ -1,5 +1,5 @@
 import { Blocks, PageBlocks } from '@flowusx/flowus-types'
-import { out, request, RequestOptions } from '@flowusx/flowus-shared'
+import { BlockType, out, request, RequestOptions } from '@flowusx/flowus-shared'
 import { FlowUsConfig, MediaUrl } from './types'
 import process from 'process'
 
@@ -35,10 +35,11 @@ export class FlowUsClient {
     // 第一个节点标记了该Block的属性是文档还是其他
     const firstKey = blocksKeys[0]
     const firstValue = pageBlocks.blocks[firstKey]
-    if (firstValue.type === 18) {
+    if (firstValue.type === BlockType.Data_Table) {
       // 数据表格
       return pageBlocks
-    } else if (firstValue.type === 0) {
+    } else if (firstValue.type === BlockType.Doc) {
+      // 文档类型
       // 错误类型，请使用getPageBlocks
       out.err('类型错误', '请使用 getPageBlocks 获取页面数据')
     } else {
@@ -51,6 +52,16 @@ export class FlowUsClient {
   private async _fetch<T>(endpoint: string, reqOpts?: RequestOptions): Promise<T> {
     const url = `${this._baseUrl}/${endpoint}`
     const res = await request<T>(url, reqOpts)
+    if (res.data.code !== 200) {
+      // @ts-ignore
+      if (res.data?.msg?.includes('无访问权限')) {
+        out.err('无访问权限', `请检查页面是否开启公开分享`)
+      } else {
+        // @ts-ignore
+        out.err('请求错误', res.data.msg)
+      }
+      process.exit()
+    }
     return res.data.data
   }
 
