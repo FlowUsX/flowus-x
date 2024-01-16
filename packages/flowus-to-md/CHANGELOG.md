@@ -1,5 +1,15 @@
 # @flowusx/flowus-to-md
 
+## 0.0.5-beta.4
+
+### Patch Changes
+
+- 校验页面是否打开页面公开分享，增加打印日志
+- Updated dependencies
+  - @flowusx/flowus-client@0.0.5-beta.4
+  - @flowusx/flowus-shared@0.0.5-beta.4
+  - @flowusx/flowus-types@0.0.5-beta.4
+
 ## 0.0.5-beta.3
 
 ### Patch Changes
