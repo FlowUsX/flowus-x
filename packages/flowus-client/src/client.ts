@@ -55,7 +55,7 @@ export class FlowUsClient {
     if (res.data.code !== 200) {
       // @ts-ignore
       if (res.data?.msg?.includes('无访问权限')) {
-        out.err('无访问权限', `请检查页面是否开启公开分享`)
+        out.err('暂无权限', `请检查页面是否开启公开分享`)
       } else {
         // @ts-ignore
         out.err('请求错误', res.data.msg)
