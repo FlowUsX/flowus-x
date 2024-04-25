@@ -43,20 +43,27 @@ export class FlowUsToMarkdown {
 
       firstValue.subNodes.forEach((blockId) => {
         const block = pageBlocks.blocks[blockId]
-        const curType = block.type as BlockType
-        let linefeed = ''
-        // 特殊处理一些md语法的粘连性，需要额外加换行
-        if (needEnter.includes(prevType) && needEnter.includes(curType)) {
-          linefeed += '\n'
-        }
-        if (!transform[curType]) {
-          out.debug(`暂不支持的块类型: ${curType}-${block.title}`)
-        } else {
-          mdString +=
-            linefeed +
-            transform[curType]({ block, blocks: pageBlocks.blocks, pageTitle: firstValue.title }) +
-            '\n'
-          prevType = curType
+        // subNodes 可能会存在空 block
+        if (block) {
+          const curType = block.type as BlockType
+          let linefeed = ''
+          // 特殊处理一些md语法的粘连性，需要额外加换行
+          if (needEnter.includes(prevType) && needEnter.includes(curType)) {
+            linefeed += '\n'
+          }
+          if (!transform[curType]) {
+            out.debug(`暂不支持的块类型: ${curType}-${block.title}`)
+          } else {
+            mdString +=
+              linefeed +
+              transform[curType]({
+                block,
+                blocks: pageBlocks.blocks,
+                pageTitle: firstValue.title,
+              }) +
+              '\n'
+            prevType = curType
+          }
         }
       })
     } else {
