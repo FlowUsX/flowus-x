@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "ts-node-esm src/test-md.ts"
+    "test": "ts-node-esm src/json-to-md.ts"
   },
   "private": true,
   "keywords": [],

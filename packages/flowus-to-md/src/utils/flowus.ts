@@ -25,7 +25,7 @@ import { out } from '@flowusx/flowus-shared'
 
 export const _unsupported = (type: BlockType) => {
   return ({ pageTitle }: TransformPrams) => {
-    out.debug(`【${pageTitle}】存在暂不支持的块类型: ${BlockTypeText[type]}`)
+    out.warning(`【${pageTitle}】存在暂不支持的块类型: ${BlockTypeText[type]}`)
     return ''
   }
 }
@@ -287,6 +287,8 @@ export const transform: Transform = {
   [BlockType.Toggle]: getToggleValue,
   [BlockType.Title]: getTitleValue,
   [BlockType.Dividing]: getDividingValue,
+  [BlockType.Grid]: _unsupported(BlockType.Grid),
+  [BlockType.Grid_Column]: _unsupported(BlockType.Grid_Column),
   [BlockType.Quote]: getQuoteValue,
   [BlockType.Emphasis_Text]: getEmphasisTextValue,
   [BlockType.Media]: getMediaValue,

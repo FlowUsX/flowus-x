@@ -13,6 +13,10 @@ export const enum BlockType {
   Title = 7, // title有level
   // 分割线
   Dividing = 9,
+  // 分栏布局
+  Grid = 10,
+  // 分栏列
+  Grid_Column = 11,
   // 引用
   Quote = 12,
   // 着重文字
@@ -62,6 +66,8 @@ export const BlockTypeText = {
   [BlockType.Toggle]: '折叠列表',
   [BlockType.Title]: '标题',
   [BlockType.Dividing]: '分割线',
+  [BlockType.Grid]: '分栏',
+  [BlockType.Grid_Column]: '分栏列',
   [BlockType.Quote]: '引述文字',
   [BlockType.Emphasis_Text]: '着重文字',
   [BlockType.Media]: '媒体',
