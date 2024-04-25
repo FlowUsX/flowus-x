@@ -1,5 +1,11 @@
 # @flowusx/flowus-to-md
 
+## 0.0.5-beta.5
+
+### Patch Changes
+
+- 1.修复 subnodes 存在空 block 的情况 2.暂不支持分栏布局
+
 ## 0.0.5-beta.4
 
 ### Patch Changes
