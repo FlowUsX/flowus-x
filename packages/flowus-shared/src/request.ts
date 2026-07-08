@@ -1,4 +1,5 @@
-import { HttpClientResponse, request as req, RequestOptions } from 'urllib'
+import { request as req } from 'urllib'
+import type { HttpClientResponse, RequestOptions } from 'urllib'
 import out from './out'
 
 /**

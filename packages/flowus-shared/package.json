@@ -13,6 +13,9 @@
   "homepage": "https://github.com/FlowUsX/flowus-x/blob/main/packages/flowus-shared/README.md",
   "author": "1874 <me@mail.1874.cool>",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.18.1"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -31,7 +34,7 @@
     "build": "rimraf dist && tsup --legacy-output"
   },
   "dependencies": {
-    "urllib": "^3.13.2",
+    "urllib": "4.9.0",
     "chalk": "^4.1.2",
     "lodash": "^4.17.21",
     "shelljs": "^0.8.5"

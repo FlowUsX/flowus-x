@@ -31,7 +31,7 @@
     "build": "rimraf dist && tsup --legacy-output"
   },
   "dependencies": {
-    "@flowusx/flowus-types": "workspace:*",
-    "@flowusx/flowus-shared": "workspace:*"
+    "@flowusx/flowus-types": "workspace:^",
+    "@flowusx/flowus-shared": "workspace:^"
   }
 }

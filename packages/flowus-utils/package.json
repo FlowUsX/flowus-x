@@ -33,7 +33,7 @@
     "build": "rimraf dist && tsup"
   },
   "dependencies": {
-    "@flowusx/flowus-types": "workspace:*",
+    "@flowusx/flowus-types": "workspace:^",
     "is-url-superb": "^6.1.0"
   }
 }

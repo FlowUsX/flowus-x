@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@flowusx/flowus-client": "workspace:*",
-    "@flowusx/flowus-to-md": "workspace:*"
+    "@flowusx/flowus-client": "workspace:^",
+    "@flowusx/flowus-to-md": "workspace:^"
   }
 }
