@@ -1,5 +1,21 @@
 # @flowusx/flowus-shared
 
+## 0.1.0
+
+### Minor Changes
+
+- 升级依赖
+
+### Patch Changes
+
+- 依赖升级
+- e510fcc: 修复 flowus 文本缺失
+- e7ac34a: 校验页面是否打开页面公开分享，增加打印日志
+- 4386a9a: 升级 urllib 到 4.9.0，并同步 Node 与 TypeScript 构建配置。
+- 05f376b: 修复 flowUs 链接
+- 5959705: 图片下载配置
+- a65538b: 代码块 language 修复
+
 ## 0.0.5-beta.4
 
 ### Patch Changes

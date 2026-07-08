@@ -1,5 +1,32 @@
 # @flowusx/flowus-to-md
 
+## 0.1.0
+
+### Minor Changes
+
+- 升级依赖
+
+### Patch Changes
+
+- 依赖升级
+- e510fcc: 修复 flowus 文本缺失
+- e7ac34a: 校验页面是否打开页面公开分享，增加打印日志
+- 05f376b: 修复 flowUs 链接
+- 5959705: 图片下载配置
+- 423f2b0: 1.修复 subnodes 存在空 block 的情况 2.暂不支持分栏布局
+- a65538b: 代码块 language 修复
+- Updated dependencies
+- Updated dependencies [e510fcc]
+- Updated dependencies
+- Updated dependencies [e7ac34a]
+- Updated dependencies [4386a9a]
+- Updated dependencies [05f376b]
+- Updated dependencies [5959705]
+- Updated dependencies [a65538b]
+  - @flowusx/flowus-client@0.1.0
+  - @flowusx/flowus-shared@0.1.0
+  - @flowusx/flowus-types@0.1.0
+
 ## 0.0.5-beta.5
 
 ### Patch Changes
